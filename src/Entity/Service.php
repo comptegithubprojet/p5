@@ -27,7 +27,7 @@ class Service
     private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\devis", inversedBy="services")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Devis", inversedBy="services")
      */
     private $devis;
 

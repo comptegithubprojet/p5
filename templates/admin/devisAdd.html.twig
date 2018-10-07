@@ -1,11 +1,11 @@
-{% extends 'admin.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title %}Ajouter un devis{% endblock %}
 
 {% block body %}
 
 	<h1>Ajouter un devis</h1>
-
-	{{form(form)}}
+	
+	{{ include('admin/formDevis.html.twig') }}
 
 {% endblock %}

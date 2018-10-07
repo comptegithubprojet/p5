@@ -7,8 +7,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Entity\Devis;
-use App\Form\DevisType;
+use App\Form\DevisBackofficeType;
 
 class AdminController extends AbstractController
 {
@@ -18,8 +20,13 @@ class AdminController extends AbstractController
      */
     public function articles()
     {
+        $repository = $this->getDoctrine()->getRepository(Article::class);
+
+        $articles = $repository->findAll();
+
         return $this->render('admin/articles.html.twig', [
             'controller_name' => 'AdminController',
+            'articles' => $articles,
         ]);
     }
 
@@ -52,21 +59,41 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article/edit", name="article_edit")
+     * @Route("/admin/article/edit/{id}", name="article_edit")
      */
-    public function articleEdit()
+    public function articleEdit(Article $article, Request $request)
     {
+        $form = $this->createForm(ArticleType::class, $article);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $article->setDateModification(new \DateTime());
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('articles');
+        }
+
         return $this->render('admin/articleEdit.html.twig', [
             'controller_name' => 'AdminController',
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/admin/article/delete", name="article_delete")
+     * @Route("/admin/article/delete/{id}", name="article_delete")
      */
-    public function articleDelete()
-    {
+    public function articleDelete(Article $article)
+    {      
+        $entityManager = $this->getDoctrine()->getManager();      
+        $entityManager->remove($article);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('articles');        
     }
 
     /**
@@ -74,17 +101,26 @@ class AdminController extends AbstractController
      */
     public function commentaires()
     {
+        $repository = $this->getDoctrine()->getRepository(Commentaire::class);
+
+        $commentaires = $repository->findAll();
+
         return $this->render('admin/commentaires.html.twig', [
             'controller_name' => 'AdminController',
+            'commentaires' => $commentaires,
         ]);
     }
 
     /**
-     * @Route("/admin/commentaire/delete", name="commentaire_delete")
+     * @Route("/admin/commentaire/delete/{id}", name="commentaire_delete")
      */
-    public function commentaireDelete()
+    public function commentaireDelete(Commentaire $commentaire)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($commentaire);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('commentaires');  
     }
 
     /**
@@ -139,20 +175,34 @@ class AdminController extends AbstractController
     {
         $devis = new Devis();
 
-        $form = $this->createForm(DevisType::class, $devis);
+        $form = $this->createForm(DevisBackofficeType::class, $devis);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
             $devis->setDateAjout(new \DateTime());
-            $devis->setStatut("nouveaux");
+            $devis->setCaseNewsletter(0);
+            $devis->setCaseObligatoire(1);
 
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($devis);
             $manager->flush();
 
-            return $this->redirectToRoute('devis_nouveaux');
+            $statutDevis = $devis->getStatut();
+
+            if($statutDevis == "nouveaux")
+            {
+                return $this->redirectToRoute('devis_nouveaux');
+            }
+            elseif($statutDevis == "en attente")
+            {
+                return $this->redirectToRoute('devis_enAttente');
+            }
+            elseif($statutDevis == "signes")
+            {
+                return $this->redirectToRoute('devis_signes');
+            } 
         }
 
         return $this->render('admin/devisAdd.html.twig', [
@@ -172,20 +222,66 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/devis/edit", name="devis_edit")
+     * @Route("/admin/devis/edit/{id}", name="devis_edit")
      */
-    public function devisEdit()
+    public function devisEdit(Devis $devis, Request $request)
     {
+        $form = $this->createForm(DevisBackofficeType::class, $devis);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $devis->setDateModification(new \DateTime());
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($devis);
+            $manager->flush();
+
+            $statutDevis = $devis->getStatut();
+
+            if($statutDevis == "nouveaux")
+            {
+                return $this->redirectToRoute('devis_nouveaux');
+            }
+            elseif($statutDevis == "en attente")
+            {
+                return $this->redirectToRoute('devis_enAttente');
+            }
+            elseif($statutDevis == "signes")
+            {
+                return $this->redirectToRoute('devis_signes');
+            } 
+        }
+
         return $this->render('admin/devisEdit.html.twig', [
             'controller_name' => 'AdminController',
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/admin/devis/delete", name="devis_delete")
+     * @Route("/admin/devis/delete/{id}", name="devis_delete")
      */
-    public function devisDelete()
+    public function devisDelete(Devis $devis)
     {
+        $statutDevis = $devis->getStatut();
 
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($devis);
+        $entityManager->flush();
+
+        if($statutDevis == "nouveaux")
+        {
+            return $this->redirectToRoute('devis_nouveaux');
+        }
+        elseif($statutDevis == "en attente")
+        {
+            return $this->redirectToRoute('devis_enAttente');
+        }
+        elseif($statutDevis == "signes")
+        {
+            return $this->redirectToRoute('devis_signes');
+        }    
     }   
 }

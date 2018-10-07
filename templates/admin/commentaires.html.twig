@@ -1,4 +1,4 @@
-{% extends 'admin.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block title %}Liste des commentaires{% endblock %}
 
@@ -9,16 +9,54 @@
 	<table class="table table-bordered table-striped table-condensed justify">
 
 		<thead>
+
 			<tr>
-			  	<th>Date</th>
-			  	<th>Nom</th>
-			  	<th>Article</th>
-			  	<th>Commentaire</th>
-			  	<th>Actions</th>
+			  	<th class="col-xs-1">Date</th>
+			  	<th class="col-xs-1">Nom</th>
+			  	<th class="col-xs-1">Prénom</th>
+			  	<th class="col-xs-4">Commentaire</th>
+			  	<th class="col-xs-2">Article</th>
+			  	<th class="col-xs-1">Supprimer</th>
 			</tr>
+
 		</thead>
 
 		<tbody>
+
+			{% for commentaire in commentaires %}
+				<tr>
+					<th>{{ commentaire.dateAjout | date("d/m/Y") }}</th>
+					<th>{{ commentaire.nom }}</th>
+					<th>{{ commentaire.prenom }}</th>
+					<th>{{ commentaire.contenu }}</th>
+					<th>{{ commentaire.article.titre }}</th>
+					<th>
+
+						<button class="btn btn-danger" data-toggle="modal" href="#delete{{ commentaire.id }}">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+
+						<div class="modal fade" id="delete{{ commentaire.id }}">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title">Etes vous sur de vouloir supprimer le commentaire de {{ commentaire.prenom }} {{ commentaire.nom }}?</h4>
+									</div>
+									<div class="modal-body">
+										"{{ commentaire.contenu }}"
+									</div>
+									<div class="modal-footer">
+										<a role="button" class="btn btn-danger" href="/admin/commentaire/delete/{{ commentaire.id }}">Supprimer</a>
+										<button class="btn btn-default" data-dismiss="modal">Annuler</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</th>
+		    	</tr>
+		    {% endfor %}
+
 		</tbody>
 		
 	</table>

@@ -52,7 +52,7 @@ class Commentaire
     private $caseObligatoire;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\article", inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="commentaires")
      */
     private $article;
 
@@ -141,6 +141,18 @@ class Commentaire
     public function setArticle(?article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

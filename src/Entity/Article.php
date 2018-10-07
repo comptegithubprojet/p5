@@ -140,24 +140,6 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Image $image): self
-    {
-        $this->image = $image;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newArticle = $image === null ? null : $this;
-        if ($newArticle !== $image->getArticle()) {
-            $image->setArticle($newArticle);
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Commentaire[]
      */
@@ -188,4 +170,23 @@ class Article
 
         return $this;
     }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newArticle = $image === null ? null : $this;
+        if ($newArticle !== $image->getArticle()) {
+            $image->setArticle($newArticle);
+        }
+
+        return $this;
+    }
+
 }

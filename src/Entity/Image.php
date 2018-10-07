@@ -17,17 +17,17 @@ class Image
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alt;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\article", inversedBy="image")
+     * @ORM\OneToOne(targetEntity="App\Entity\Article", inversedBy="image")
      */
     private $article;
 

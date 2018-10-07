@@ -1,0 +1,15 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+
+	Titre : {{ article.titre }}
+	</br>
+	Auteur : {{ article.auteur }}
+
+	{{ form(form) }}
+
+	{% for commentaire in article.commentaires %}
+		{{ commentaire.contenu}}</br>
+	{% endfor %}
+
+{% endblock %}

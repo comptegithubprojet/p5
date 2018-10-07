@@ -2,34 +2,35 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
+use App\Entity\Devis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Image;
-use App\Form\ImageType;
 
-
-class ArticleType extends AbstractType
+class DevisBackofficeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('auteur', ChoiceType::class, array(
+            ->add('nom')
+            ->add('prenom')
+            ->add('societe')
+            ->add('email')
+            ->add('adresse')
+            ->add('codePostal')
+            ->add('ville')
+            ->add('telephone')
+            ->add('urlSite')
+            ->add('description')
+            ->add('statut', ChoiceType::class, array(
                 'choices' => array(
-                    'Maxime CONSTANTIN'      => 'Maxime CONSTANTIN',
-                    'Elodie ROUEL' => 'Elodie ROUEL',
-                    'Julie TATIBOUET' => 'Julie TATIBOUET',
-                    'Florian BRETON' => 'Florian BRETON',
+                    'Nouveau'      => 'nouveaux',
+                    'En attente' => 'en attente',
+                    'Signé' => 'signes',
                 )                
             ))
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('image', ImageType::class)
             ->add('save',      SubmitType::class)
         ;
     }
@@ -37,7 +38,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Devis::class,
         ]);
     }
 }
