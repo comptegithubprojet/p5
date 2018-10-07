@@ -1,0 +1,43 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Liste des devis "Signés"{% endblock %}
+
+{% block body %}
+	
+	<h1>Liste des devis "Signés"</h1>
+
+	<table class="table table-bordered table-striped table-condensed justify">
+
+		<thead>
+
+			<tr>
+				<th>Numéro de devis</th>
+			  	<th>Date demande</th>
+			  	<th>Nom</th>
+			  	<th>Prénom</th>
+			  	<th>Société</th>
+			  	<th>Téléphone</th>
+			  	<th>Email</th>
+			  	<th>Actions</th>
+			</tr>
+			
+		</thead>
+
+		<tbody>
+
+			{% for devi in devis %}
+				<th>{{ devi.id }}</th>
+		        <th>{{ devi.dateAjout | date }}</th>
+		        <th>{{ devi.nom }}</th>
+		        <th>{{ devi.prenom }}</th>
+		        <th>{{ devi.societe }}</th>
+		        <th>{{ devi.telephone }}</th>
+		        <th>{{ devi.email }}</th>
+		        <th></th>
+		    {% endfor %}
+
+		</tbody>
+		
+	</table>
+
+{% endblock %}

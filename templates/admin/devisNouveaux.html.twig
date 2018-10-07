@@ -1,0 +1,45 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Liste des devis "Nouveaux"{% endblock %}
+
+{% block body %}
+	
+	<h1>Liste des devis "Nouveaux"</h1>
+
+	<table class="table table-bordered table-striped table-condensed justify">
+
+		<thead>
+
+			<tr>
+				<th class="col-xs-1">Numéro de devis</th>
+			  	<th class="col-xs-1">Date demande</th>
+			  	<th class="col-xs-1">Nom</th>
+			  	<th class="col-xs-1">Prénom</th>
+			  	<th class="col-xs-1">Société</th>
+			  	<th class="col-xs-1">Téléphone</th>
+			  	<th class="col-xs-1">Email</th>
+			  	<th>Actions</th>
+			</tr>
+
+		</thead>
+
+		<tbody>
+
+			{% for devi in devis %}
+				<tr>
+					<th>{{ devi.id }}</th>
+			        <th>{{ devi.dateAjout | date("d/m/Y") }}</th>
+			        <th>{{ devi.nom }}</th>
+			        <th>{{ devi.prenom }}</th>
+			        <th>{{ devi.societe }}</th>
+			        <th>{{ devi.telephone }}</th>
+			        <th>{{ devi.email }}</th>
+			        <th></th>
+		    	</tr>
+		    {% endfor %}
+
+		</tbody>
+		
+	</table>
+
+{% endblock %}
