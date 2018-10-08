@@ -29,6 +29,7 @@ class DevisBackofficeType extends AbstractType
                     'Nouveau'      => 'nouveaux',
                     'En attente' => 'en attente',
                     'Signé' => 'signes',
+                    'Archivé' => 'archives',
                 )                
             ))
             ->add('save',      SubmitType::class)

@@ -8,9 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Image;
-use App\Form\ImageType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 
 class ArticleType extends AbstractType
@@ -28,8 +27,10 @@ class ArticleType extends AbstractType
             ))
             ->add('titre')
             ->add('resume')
-            ->add('contenu')
-            ->add('image', ImageType::class)
+            ->add('contenu', CKEditorType::class)
+            ->add('image', FileType::class, array(
+                'required' => false,
+            ))
             ->add('save',      SubmitType::class)
         ;
     }

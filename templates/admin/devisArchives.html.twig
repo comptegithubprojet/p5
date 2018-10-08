@@ -1,10 +1,10 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}Liste des devis "Signés"{% endblock %}
+{% block title %}Liste des devis "Archivés"{% endblock %}
 
 {% block body %}
 	
-	<h1>Liste des devis "Signés"</h1>
+	<h1>Liste des devis "Archivés"</h1>
 
 	<table class="table table-bordered table-striped table-condensed justify">
 
@@ -18,7 +18,6 @@
 			  	<th class="col-xs-1">Société</th>
 			  	<th class="col-xs-1">Téléphone</th>
 			  	<th class="col-xs-1">Email</th>
-			  	<th class="col-xs-2">Archiver</th>
 			  	<th class="col-xs-1">Modifier</th>
 			  	<th class="col-xs-1">Supprimer</th>
 			</tr>
@@ -37,11 +36,8 @@
 			        <th>{{ devi.telephone }}</th>
 			        <th>{{ devi.email }}</th>
 			        <th>
-			        	<a role="button" class="btn btn-primary" href="/admin/devis/statutArchives/{{ devi.id }}">Archiver</a>
-			        </th>
-			        <th>
 			        	<a role="button" class="btn btn-warning" href='/admin/devis/edit/{{ devi.id }}'>
-			        		<span class="glyphicon glyphicon-edit"></span>			        			
+			        		<span class="glyphicon glyphicon-edit"></span>			   
 			        	</a>
 			        </th>
 			        <th>

@@ -18,7 +18,7 @@
 			  	<th class="col-xs-1">Société</th>
 			  	<th class="col-xs-1">Téléphone</th>
 			  	<th class="col-xs-1">Email</th>
-			  	<th class="col-xs-2">Archiver</th>
+			  	<th class="col-xs-2">Signer</th>
 			  	<th class="col-xs-1">Modifier</th>
 			  	<th class="col-xs-1">Supprimer</th>
 			</tr>
@@ -36,7 +36,9 @@
 			        <th>{{ devi.societe }}</th>
 			        <th>{{ devi.telephone }}</th>
 			        <th>{{ devi.email }}</th>
-			        <th></th>
+			        <th>
+			        	<a role="button" class="btn btn-primary" href="/admin/devis/statutSignes/{{ devi.id }}">Signer</a>
+			        </th>
 			        <th>
 			        	<a role="button" class="btn btn-warning" href='/admin/devis/edit/{{ devi.id }}'>
 			        		<span class="glyphicon glyphicon-edit"></span>			   

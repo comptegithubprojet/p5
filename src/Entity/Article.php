@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -34,7 +35,7 @@ class Article
     private $resume;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $contenu;
 
@@ -49,7 +50,7 @@ class Article
     private $dateModification;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", mappedBy="article", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", nullable=true)
      */
     private $image;
 
@@ -171,20 +172,14 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Image $image): self
+    public function setImage($image): self
     {
         $this->image = $image;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newArticle = $image === null ? null : $this;
-        if ($newArticle !== $image->getArticle()) {
-            $image->setArticle($newArticle);
-        }
 
         return $this;
     }
