@@ -127,4 +127,16 @@ class Contact
 
         return $this;
     }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
 }

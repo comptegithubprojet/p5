@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+	<body>
+		<section>
+		    <div class="container">
+		        <div class="row">
+		            <div class="roomy-100" style="width:100%;">
+		                
+		                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+						{{ form_errors(form) }}
+
+						    <div class="row">
+						        <div class="col-md-5 col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                    {{ form_label(form.nom, "Nom", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }}
+						                </div>
+						                <div>
+						                    {{ form_errors(form.nom, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+
+						        <div class="col-md-5 col-sm-offset-2 col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                    {{ form_label(form.prenom, "Prénom", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_widget(form.prenom, { 'attr': {'class': 'form-control'} }) }}
+						                </div>
+						                <div>
+						                    {{ form_errors(form.prenom, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+
+						    <div class="row">				        
+						        <div class="col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                    {{ form_label(form.email, "E-mail", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+						                </div>
+						                <div>
+						                    {{ form_errors(form.email, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+
+						    <div class="row">				        
+						        <div class="col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                    {{ form_label(form.sujet, "Sujet", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_widget(form.sujet, { 'attr': {'class': 'form-control'} }) }}
+						                </div>
+						                <div>
+						                    {{ form_errors(form.sujet, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>			    
+						    					 
+						    <div class="row">
+						        <div class="col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                    {{ form_label(form.message, "Message", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_widget(form.message, { 'attr': {'style':'min-height:300px', 'class': 'form-control'} }) }}
+						                </div>
+						                <div>
+						                    {{ form_errors(form.message, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+
+						    <div class="row">
+						        <div class="col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                	{{ form_widget(form.caseNewsletter, { 'attr': {'class': ''} }) }}
+						                    {{ form_label(form.caseNewsletter, "Recevoir la newsletter Digiteam", {'label_attr': {'class': 'control-label'}}) }}
+						                </div>  
+						                <div>
+						                    {{ form_errors(form.caseNewsletter, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+
+						    <div class="row">
+						        <div class="col-xs-12">
+						            <div class="form-group">
+						                <div>
+						                	{{ form_widget(form.caseReglement, { 'attr': {'class': ''} }) }}
+						                	<label>J'accepte les <a href="#">mentions légales</a> et la <a href="#">politique de confidentialité</a></label>
+						                    
+						                </div>  
+						                <div>
+						                    {{ form_errors(form.caseReglement, { 'attr': {'class': 'form-control '} }) }}
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+
+						{{ form_widget(form.save, {'attr': {'class': 'btn btn-warning btn-lg col-xs-offset-8 col-xs-4'}, 'label': 'Envoyer'}) }}
+
+						{{ form_rest(form) }}
+
+						{{ form_end(form) }}
+
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+	</body>
+
+{% endblock %}
+

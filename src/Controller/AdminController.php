@@ -13,6 +13,8 @@ use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Entity\Devis;
 use App\Form\DevisBackofficeType;
+use App\Service\statutDevisRedirection;
+use App\Entity\Newsletter;
 
 class AdminController extends AbstractController
 {
@@ -43,7 +45,7 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted())
+        if($form->isSubmitted() && $form->isValid())
         {
             $article->setDateAjout(new \DateTime());
 
@@ -258,7 +260,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/devis/add", name="devis_add")
      */
-    public function devisAdd(Request $request)
+    public function devisAdd(Request $request, statutDevisRedirection $statutDevisRedirection)
     {
         $devis = new Devis();
 
@@ -278,22 +280,9 @@ class AdminController extends AbstractController
 
             $statutDevis = $devis->getStatut();
 
-            if($statutDevis == "nouveaux")
-            {
-                return $this->redirectToRoute('devis_nouveaux');
-            }
-            elseif($statutDevis == "en attente")
-            {
-                return $this->redirectToRoute('devis_enAttente');
-            }
-            elseif($statutDevis == "signes")
-            {
-                return $this->redirectToRoute('devis_signes');
-            }
-            elseif($statutDevis == "archives")
-            {
-                return $this->redirectToRoute('devis_archives');
-            }  
+            $redirectionStatut = $statutDevisRedirection->redirectStatut($statutDevis);
+
+            return $this->redirectToRoute($redirectionStatut); 
         }
 
         return $this->render('admin/devisAdd.html.twig', [
@@ -305,7 +294,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/devis/edit/{id}", name="devis_edit")
      */
-    public function devisEdit(Devis $devis, Request $request)
+    public function devisEdit(Devis $devis, Request $request, statutDevisRedirection $statutDevisRedirection)
     {
         $form = $this->createForm(DevisBackofficeType::class, $devis);
 
@@ -321,22 +310,9 @@ class AdminController extends AbstractController
 
             $statutDevis = $devis->getStatut();
 
-            if($statutDevis == "nouveaux")
-            {
-                return $this->redirectToRoute('devis_nouveaux');
-            }
-            elseif($statutDevis == "en attente")
-            {
-                return $this->redirectToRoute('devis_enAttente');
-            }
-            elseif($statutDevis == "signes")
-            {
-                return $this->redirectToRoute('devis_signes');
-            }
-            elseif($statutDevis == "archives")
-            {
-                return $this->redirectToRoute('devis_archives');
-            }  
+            $redirectionStatut = $statutDevisRedirection->redirectStatut($statutDevis);
+
+            return $this->redirectToRoute($redirectionStatut); 
         }
 
         return $this->render('admin/devisEdit.html.twig', [
@@ -348,7 +324,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/devis/delete/{id}", name="devis_delete")
      */
-    public function devisDelete(Devis $devis)
+    public function devisDelete(Devis $devis, statutDevisRedirection $statutDevisRedirection)
     {
         $statutDevis = $devis->getStatut();
 
@@ -356,21 +332,37 @@ class AdminController extends AbstractController
         $entityManager->remove($devis);
         $entityManager->flush();
 
-        if($statutDevis == "nouveaux")
-        {
-            return $this->redirectToRoute('devis_nouveaux');
-        }
-        elseif($statutDevis == "en attente")
-        {
-            return $this->redirectToRoute('devis_enAttente');
-        }
-        elseif($statutDevis == "signes")
-        {
-            return $this->redirectToRoute('devis_signes');
-        }
-        elseif($statutDevis == "archives")
-        {
-            return $this->redirectToRoute('devis_archives');
-        }     
+        $redirectionStatut = $statutDevisRedirection->redirectStatut($statutDevis);
+
+        return $this->redirectToRoute($redirectionStatut);   
+    }
+
+    /**
+     * @Route("/admin/newsletter/list", name="newsletter_list")
+     */
+    public function newsletterList()
+    {
+        $repository = $this->getDoctrine()->getRepository(Newsletter::class);
+
+        $newsletters = $repository->findAll();
+
+        return $this->render('admin/newsletterList.html.twig', [
+            'controller_name' => 'AdminController',
+            'newsletters' => $newsletters,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/newsletter/delete/{id}", name="newsletter_delete")
+     */
+    public function newsletterDelete(Newsletter $newsletter)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($newsletter);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('newsletter_list');   
     }   
+
+    
 }
