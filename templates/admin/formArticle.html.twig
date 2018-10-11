@@ -51,9 +51,17 @@
         </div>
     </div>
 
-
-
-    
+    <div class="form-group">
+        <div class="col-xs-offset-1">
+            {{ form_label(form.altImage, "Alt Image", {'label_attr': {'class': 'control-label'}}) }}
+        </div>  
+        <div class="col-xs-offset-1 col-xs-10">
+            {{ form_widget(form.altImage, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-xs-offset-1">
+            {{ form_errors(form.altImage, { 'attr': {'class': 'form-control '} }) }}
+        </div>
+    </div>    
 
     <div class="form-group image-preview-block">
 

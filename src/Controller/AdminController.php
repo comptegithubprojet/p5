@@ -297,6 +297,8 @@ class AdminController extends AbstractController
     public function devisEdit(Devis $devis, Request $request, statutDevisRedirection $statutDevisRedirection)
     {
         $form = $this->createForm(DevisBackofficeType::class, $devis);
+        
+        $devis->setCaseObligatoire(1);
 
         $form->handleRequest($request);
 

@@ -18,6 +18,7 @@
 			  	<th class="col-xs-1">Société</th>
 			  	<th class="col-xs-1">Téléphone</th>
 			  	<th class="col-xs-1">Email</th>
+			  	<th class="col-xs-1">Services</th>
 			  	<th class="col-xs-1">Modifier</th>
 			  	<th class="col-xs-1">Supprimer</th>
 			</tr>
@@ -36,11 +37,36 @@
 			        <th>{{ devi.telephone }}</th>
 			        <th>{{ devi.email }}</th>
 			        <th>
+			        	<ul>
+
+			        		{% if devi.packStarter == true %}
+			        			<li>Pack Starter</li>
+			        		{% endif %}
+
+			        		{% if devi.packChallenger == true %}
+			        			<li>Pack Challenger</li>
+			        		{% endif %}
+
+			        		{% if devi.packExpert == true %}
+			        			<li>Pack Expert</li>
+			        		{% endif %}
+
+			        		{% if devi.inboundMarketing == true %}
+			        			<li>Inbound Marketing</li>
+			        		{% endif %}
+
+			        		{% if devi.consulting == true %}
+			        			<li>Consulting</li>
+			        		{% endif %}
+			        		
+			        	</ul> 
+			        </th>
+			        <th class="btn-admin-table">
 			        	<a role="button" class="btn btn-warning" href='/admin/devis/edit/{{ devi.id }}'>
 			        		<span class="glyphicon glyphicon-edit"></span>			   
 			        	</a>
 			        </th>
-			        <th>
+			        <th class="btn-admin-table">
 
 			        	<button class="btn btn-danger" data-toggle="modal" href="#delete{{ devi.id }}">
 							<span class="glyphicon glyphicon-trash"></span>

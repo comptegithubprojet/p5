@@ -28,6 +28,7 @@ class ArticleType extends AbstractType
             ->add('titre')
             ->add('resume')
             ->add('contenu', CKEditorType::class)
+            ->add('altImage')
             ->add('image', FileType::class, array(
                 'required' => false,
             ))

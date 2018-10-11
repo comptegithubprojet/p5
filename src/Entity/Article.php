@@ -21,21 +21,29 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotNull()
      */
     private $auteur;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotNull()
      */
     private $titre;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @Assert\NotNull()
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Assert\NotNull()
      */
     private $contenu;
 
@@ -51,6 +59,13 @@ class Article
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     */
+    private $altImage;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\Image()
      */
     private $image;
 
@@ -180,6 +195,18 @@ class Article
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getAltImage(): ?string
+    {
+        return $this->altImage;
+    }
+
+    public function setAltImage(?string $altImage): self
+    {
+        $this->altImage = $altImage;
 
         return $this;
     }

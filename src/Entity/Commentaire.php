@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentaireRepository")
@@ -18,21 +19,39 @@ class Commentaire
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @Assert\NotNull()
      */
     private $contenu;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 25,
+     *      minMessage = "Veuillez rentrer une nom de minimum {{ limit }} charactères",
+     *      maxMessage = "Veuillez rentrer une nom de maximum {{ limit }} charactères"
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 25,
+     *      minMessage = "Veuillez rentrer une prenom de minimum {{ limit }} charactères",
+     *      maxMessage = "Veuillez rentrer une prenom de maximum {{ limit }} charactères"
+     * )
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\Email(message="Veuillez rentrer une adresse email")
      */
     private $email;
 
@@ -48,6 +67,8 @@ class Commentaire
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @Assert\IsTrue(message="Veuillez cocher la case")
      */
     private $caseObligatoire;
 
