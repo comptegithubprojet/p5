@@ -203,9 +203,7 @@ class DevisEnvoyerType extends AbstractType
                 )                
             ))
             ->add('prixHTDesign', IntegerType::class)
-            ->add('messageEmail', CKEditorType::class, array(
-                'required' => 'true'
-            ))
+            
             ->add('designationOption1', TextType::class, array(
                 'required' => false,
             ))

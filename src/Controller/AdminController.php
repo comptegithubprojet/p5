@@ -21,6 +21,7 @@ use App\Service\avantEnvoyerDevis;
 use App\Service\prixDevis;
 use App\Service\prixServices;
 use App\Service\prixOptions;
+use Cocur\Slugify\Slugify;
 
 class AdminController extends AbstractController
 {
@@ -65,6 +66,10 @@ class AdminController extends AbstractController
         {
             $article->setDateAjout(new \DateTime());
 
+            $slugify = new Slugify();
+            $slug = $slugify->slugify($article->getTitre());
+            $article->setSlug($slug);
+
             if($form->get('image')->getData() != null)
             {
                 $file = $form->get('image')->getData();
@@ -77,7 +82,7 @@ class AdminController extends AbstractController
             }            
 
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($article);
+            $manager->persist($article);            
             $manager->flush();
 
             return $this->redirectToRoute('articles');
@@ -284,7 +289,8 @@ class AdminController extends AbstractController
         avantEnvoyerDevis $avantEnvoyerDevis, 
         prixDevis $prixDevis, 
         prixServices $prixServices,
-        prixOptions $prixOptions
+        prixOptions $prixOptions,
+        \Swift_Mailer $mailer
     )
     {
         if(!isset($_SESSION['admin']))
@@ -306,16 +312,31 @@ class AdminController extends AbstractController
 
             $prixServices->calculer($devis);
             $prixOptions->calculer($devis);
-
             $prixDevis->calculer($devis);
+
+            $devis->setStatut('en attente');
 
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($devis);
-            $manager->flush();
+            $manager->flush();            
 
-            return $this->redirectToRoute('testDevis',array(
-                'id' => $devis->getId(),
-            )); 
+            $message = (new \Swift_Message('Demande de devis'))
+                ->setFrom('digiteamp5@gmail.com')
+                ->setTo($devis->getEmail());
+
+            $message->setBody(
+                    $this->renderView(
+                        'admin/emails/devisEnvoyer.html.twig', array(
+                            'devis' => $devis,
+                        )
+                    ),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
+
+            return $this->redirectToRoute('devis_nouveaux'); 
         }        
 
         return $this->render('admin/devisEnvoyer.html.twig', [
@@ -553,9 +574,5 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('authentification');
-    }
-
-
-
-    
+    }    
 }

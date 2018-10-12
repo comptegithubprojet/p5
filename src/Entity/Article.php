@@ -64,6 +64,11 @@ class Article
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\Image()
      */
@@ -207,6 +212,18 @@ class Article
     public function setAltImage(?string $altImage): self
     {
         $this->altImage = $altImage;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

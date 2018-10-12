@@ -207,22 +207,6 @@
 
 	</table>	
 
-	<div class="row">
-	    <div class="col-xs-12">
-	        <div class="form-group">
-	            <div>
-	                {{ form_label(form.messageEmail, "Corps Email", {'label_attr': {'class': 'control-label'}}) }}
-	            </div>  
-	            <div>
-	                {{ form_widget(form.messageEmail, { 'attr': {'class': '', 'required':''} }) }}
-	            </div>
-	            <div>
-	                {{ form_errors(form.messageEmail, { 'attr': {'class': 'form-control '} }) }}
-	            </div>
-	        </div>
-	    </div>
-	</div>
-
 	{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg col-xs-offset-8 col-xs-4'}, 'label': 'Envoyer'}) }}
 
 	{{ form_rest(form) }}

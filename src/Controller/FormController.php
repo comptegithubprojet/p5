@@ -10,61 +10,61 @@ use App\Form\ContactType;
 use App\Entity\Devis;
 use App\Form\DevisType;
 use App\Service\addNewsletter;
+use App\Service\recevoirEmail;
 
 class FormController extends AbstractController
 {
     /**
-     * @Route("/contact2", name="contact2")
+     * @Route("/contact", name="contact")
      */
-    public function contact2(Request $request, addNewsletter $addNewsletter, \Swift_Mailer $mailer)
+    public function contact(Request $request, addNewsletter $addNewsletter, \Swift_Mailer $mailer)
     {
-    	$contact = new Contact();
+        $contact = new Contact();
 
-        $form = $this->createForm(ContactType::class, $contact);
+        $form = $this->createForm(ContactType::class,$contact);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-        	$manager = $this->getDoctrine()->getManager();
+            $manager = $this->getDoctrine()->getManager();
 
-        	if($contact->getCaseNewsletter() == 'true')
-        	{
-        		$newsletter = $addNewsletter->add($contact);
-        		$manager->persist($newsletter);
-        	}
+            if($contact->getCaseNewsletter() == 'true')
+            {
+                $newsletter = $addNewsletter->add($contact);
+                $manager->persist($newsletter);
+            }
 
-            $message = (new \Swift_Message('Demande de contact'))
-            ->setFrom($contact->getEmail())
-            ->setTo('digiteamp5@gmail.com')
-            ->setBody(
-                $this->renderView(
-                    // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    array('contact' => $contact)
-                ),
-                'text/html'
-            )
-            ;
-
-            $mailer->send($message);        	
-
-            
             $manager->persist($contact);
             $manager->flush();
+
+            $message = (new \Swift_Message($contact->getSujet()))
+                ->setFrom($contact->getEmail())
+                ->setTo('digiteamp5@gmail.com')
+                ->setBody(
+                    $this->renderView(
+                        'emails/recevoirEmail.html.twig',
+                        array('contact' => $contact)
+                    ),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
 
             return $this->redirectToRoute('accueil');
         }
         return $this->render('form/contact.html.twig', [
-            'controller_name' => 'FormController',
+            'controller_name' => 'DefaultController',
             'form' => $form->createView(),
         ]);
     }
 
+
     /**
-     * @Route("/devis2", name="devis2")
+     * @Route("/devis", name="devis")
      */
-    public function devis2(Request $request, addNewsletter $addNewsletter)
+    public function devis(Request $request, addNewsletter $addNewsletter)
     {
     	$devis = new Devis();
 

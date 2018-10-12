@@ -52,7 +52,7 @@
 
                 <!-- contenu -->
                 <tr class="content">
-                    <td class="w640" class="w640"  width="640" bgcolor="#708090">
+                    <td class="w640" class="w640"  width="640" bgcolor="#F8F8F8">
                         <table class="w640"  width="640" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                             <tr>
@@ -67,9 +67,9 @@
                                                     Votre demande de devis  </h2>
 
                                                 <div align="left" class="article-content">
-                                                    <p> [Madame/Monsieur],</p>
+                                                    <p> {{ devis.civilite }} {{ devis.nom }} {{ devis.prenom }},</p>
                                                     <p>
-                                                        Suite à votre demande de devis en date du [date] depuis notre site http://digiteam-p5.com concernant,
+                                                        Suite à votre demande de devis en date du {{ "now"|date("d/m/Y") }} depuis notre site http://digiteam-p5.com concernant,
                                                         nous vous prions de trouver ci-joint notre proposition commerciale. </p>
                                                         <p>Cette proposition tient compte des éléments de votre demande suivants :
                                                     </p>
@@ -80,10 +80,30 @@
                                             <td>
                                                 <div align="left" class="article-content">
                                                     <p>
-                                                    <ul style="list-style: none;">{# {% for service in devis.service %}
-                                                            <li></li>
-                                                        {% endfor %}#}
-                                                        <li>pack starter</li>
+                                                    <ul style="list-style: none;"> 
+                                                        {% if devis.caseStarterPack == true %}
+                                                            <li>Pack Starter</li>
+                                                        {% endif %}
+
+                                                        {% if devis.caseChallengerPack == true %}
+                                                            <li>Pack Challenger</li>
+                                                        {% endif %}
+
+                                                        {% if devis.caseExpertPack == true %}
+                                                            <li>Pack Expert</li>
+                                                        {% endif %}
+
+                                                        {% if devis.caseInboundMarketing == true %}
+                                                            <li>Inbound Marketing</li>
+                                                        {% endif %}
+
+                                                        {% if devis.caseConsulting == true %}
+                                                            <li>Consulting</li>
+                                                        {% endif %}
+
+                                                        {% if devis.caseDesign == true %}
+                                                            <li>Design</li>
+                                                        {% endif %}
                                                     </ul>
                                                     </p>
                                                 </div>
@@ -91,10 +111,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p>Nous tenons à vous préciser que ce devis est valable jusqu'au [date].</p>
                                                 <p>Nous vous remercions donc de nous le retourner revêtu de la mention « bon pour accord » suivie de votre signature et de la date.</p>
                                                 <p>Avant toute acceptation, Digiteam reste bien entendu à votre entière disposition pour tout complément d'information.</p>
-                                                <p>Vous en souhaitant bonne réception, nous vous prions d'agréer, [Madame/Monsieur], l'expression de mes salutations distinguées.</p>
+                                                <p>Vous en souhaitant bonne réception, nous vous prions d'agréer, {{ devis.civilite }}, l'expression de mes salutations distinguées.</p>
                                             </td>
                                         </tr>
                                           <br/><br/>

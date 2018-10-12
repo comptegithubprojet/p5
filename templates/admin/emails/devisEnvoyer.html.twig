@@ -5,10 +5,404 @@
     	<title>Devis</title>
     	<meta name="devis" content="devis">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<link rel="stylesheet" type="text/css" href="{{ asset('styleAdmin/styleDevisEmail.css') }}">
+    	<style type="text/css">
+body
+{
+	height:1170px;
+	width:827px;
+	padding-top: 1%;
+	padding-left: 10%;
+	padding-right: 10%;
+	font-family: Arial;
+}
+
+.logo-digiteam
+{
+	text-align:right;
+}
+
+.logo-digiteam img
+{
+	max-height: 85px;
+	max-width: 85px;
+}
+
+.devis-numero
+{
+	font-size: 20px;
+}
+
+.informations-emetteur-destinataire
+{
+	display: flex;
+}
+
+.informations-emetteur-destinataire p
+{
+	margin:3px;
+}
+
+.emetteur-champs
+{
+	width:33%;
+	display: inline-block;
+	background-color: #BFBFBF;
+}
+
+.emetteur-infos
+{
+	width:33%;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.destinataire
+{
+	width:33%;
+	display: inline-block;
+	background-color: #BFBFBF;
+}
+
+#destinataire-margin-top
+{
+	margin-top: 5px;
+}
+
+.table-devis
+{
+	margin-top: 30px;
+	width:100%;
+	border-spacing: 0px;
+}
+
+.table-devis thead
+{
+	background-color: #8EAADB;
+}
+
+.table-devis p
+{
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.table-devis tbody p
+{
+	font-weight: normal;
+}
+
+.table-devis th
+{
+	border: 1px solid black;
+}
+
+.th-description
+{
+	width: 52%;
+}
+
+.th-charge
+{
+	width: 12%;
+}
+
+.th-prixHT
+{
+	width: 12%;
+}
+
+.th-TVA
+{
+	width: 12%;
+}
+
+.th-TTC
+{
+	width: 12%;
+}
+
+.th-align-left
+{
+	text-align: left;
+
+}
+
+.th-align-left p
+{
+	margin-left: 5px;	
+}
+
+
+.montant-total
+{
+	margin-top: 30px;
+	display: flex;
+}
+
+.montant-total p
+{
+	margin: 0px;
+}
+
+
+.champs-montant-total
+{
+	margin-left: 57%;
+	width:33%;
+	display: inline-block;
+}
+
+.valeur-montant-total
+{
+	width:10%;
+	display: inline-block;
+	text-align: right;
+}
+
+#margin-top-border
+{
+	margin-top: 10px;
+	padding-top: 2px;
+	border-top: 1px solid black;
+}
+
+#margin-top-accompte
+{
+	margin-top: 20px;
+}
+
+.signatures
+{
+	margin-top: 20px;
+	display: flex;	
+}
+
+.signatures p
+{
+	margin-top: 5px;
+}
+
+.signature-agence
+{
+	width:50%;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
+	border: 1px solid black;
+	height: 150px;
+}
+
+.signature-client
+{
+	width:50%;
+	background-color: #A6A6A6;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
+	border: 1px solid black;
+	height: 150px;
+}
+
+.footer
+{
+	margin-top: 20px;
+	display: flex;
+	padding-bottom: 3%;
+}
+
+.footer p
+{
+	margin:0;
+}
+
+.adresse-digiteam
+{
+	width:33%;
+}
+
+.adresse-contact
+{
+	width:33%;
+}
+
+.adresse-banque
+{
+	width:34%;
+}
+
+#border-top-margin-bottom
+{
+	border-top: 1px solid black;
+	margin-bottom: 5px;
+	padding-top: 2px;
+}
+</style>
 	</head>
 	<body>
-		<div class="logo-digiteam"><img src="{{ asset('images/logo2.png') }}"></div>
+		<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:white" >
+		    <tbody>
+		    <tr>
+		        <td align="center" bgcolor="white">
+		            <table  cellpadding="0" cellspacing="0" border="0">
+		                <tbody>
+		                <tr>
+		                    <td class="w640"  width="640" height="10"></td>
+		                </tr>
+
+		                <tr>
+		                    <td align="center" class="w640"  width="640" height="20"> <a style="color:black; font-size:12px;" href="#"><span style="color:black; font-size:12px;">Voir le contenu de ce mail en ligne</span></a> </td>
+		                </tr>
+		                <tr>
+		                    <td class="w640"  width="640" height="10"></td>
+		                </tr>
+
+
+		                <!-- entete -->
+		                <tr class="pagetoplogo">
+		                    <td class="w640"  width="640">
+		                        <table  class="w640"  width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#327cf9">
+		                            <tbody>
+		                            <tr>
+		                                <td class="w30"  width="30"></td>
+		                                <td  class="w580"  width="580" valign="middle" align="center">
+		                                    <div class="pagetoplogo-content">
+		                                        
+		                                    </div>
+		                                </td>
+		                                <td class="w30"  width="30"></td>
+		                            </tr>
+		                            </tbody>
+		                        </table>
+		                    </td>
+		                </tr>
+
+
+		                <!-- contenu -->
+		                <tr class="content">
+		                    <td class="w640" class="w640"  width="640" bgcolor="#F8F8F8">
+		                        <table class="w640"  width="640" cellpadding="0" cellspacing="0" border="0">
+		                            <tbody>
+		                            <tr>
+		                                <td  class="w30"  width="30"></td>
+		                                <td  class="w580"  width="580">
+		                                    <!-- une zone de contenu -->
+		                                    <table class="w580"  width="580" cellpadding="0" cellspacing="0" border="0">
+		                                        <tbody>
+		                                        <tr>
+		                                            <td class="w580"  width="580">
+		                                                <h2 style="color:black; font-size:22px; padding-top:12px;">
+		                                                    Votre demande de devis  </h2>
+
+		                                                <div align="left" class="article-content">
+		                                                    <p> {{ devis.civilite }} {{ devis.nom }} {{ devis.prenom }},</p>
+		                                                    <p>
+		                                                        Suite à votre demande de devis en date du {{ "now"|date("d/m/Y") }} depuis notre site http://digiteam-p5.com concernant,
+		                                                        nous vous prions de trouver ci-joint notre proposition commerciale. </p>
+		                                                        <p>Cette proposition tient compte des éléments de votre demande suivants :
+		                                                    </p>
+		                                                </div>
+		                                            </td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>
+		                                                <div align="left" class="article-content">
+		                                                    <p>
+		                                                    <ul style="list-style: none;"> 
+		                                                        {% if devis.caseStarterPack == true %}
+		                                                            <li>Pack Starter</li>
+		                                                        {% endif %}
+
+		                                                        {% if devis.caseChallengerPack == true %}
+		                                                            <li>Pack Challenger</li>
+		                                                        {% endif %}
+
+		                                                        {% if devis.caseExpertPack == true %}
+		                                                            <li>Pack Expert</li>
+		                                                        {% endif %}
+
+		                                                        {% if devis.caseInboundMarketing == true %}
+		                                                            <li>Inbound Marketing</li>
+		                                                        {% endif %}
+
+		                                                        {% if devis.caseConsulting == true %}
+		                                                            <li>Consulting</li>
+		                                                        {% endif %}
+
+		                                                        {% if devis.caseDesign == true %}
+		                                                            <li>Design</li>
+		                                                        {% endif %}
+		                                                    </ul>
+		                                                    </p>
+		                                                </div>
+		                                            </td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>
+		                                                <p>Nous vous remercions donc de nous le retourner revêtu de la mention « bon pour accord » suivie de votre signature et de la date.</p>
+		                                                <p>Avant toute acceptation, Digiteam reste bien entendu à votre entière disposition pour tout complément d'information.</p>
+		                                                <p>Vous en souhaitant bonne réception, nous vous prions d'agréer, {{ devis.civilite }}, l'expression de mes salutations distinguées.</p>
+		                                            </td>
+		                                        </tr>
+		                                          <br/><br/>
+
+		                                        <tr>
+		                                            <td><hr>
+		                                                <div class="pagetoplogo-content">
+		                                                    
+		                                                    <h4>DigiTeam</h4>
+		                                                    <p>3 rue de la Comédie
+		                                                    34000 Montpellier</p>
+		                                                    <p>Tél : 04-67-00-00-12</p>
+		                                                </div>
+		                                            </td>
+		                                        </tr>
+
+		                                        </tbody>
+		                                    </table>
+
+
+		                            </tbody>
+		                        </table>
+		                    </td>
+		                </tr>
+
+
+
+		                <!-- pied de page -->
+		                <tr class="pagebottom">
+		                    <td class="w640"  width="640">
+		                        <table class="w640"  width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#327cf9">
+		                            <tbody>
+		                            <tr>
+		                                <td colspan="5" height="10"></td>
+		                            </tr>
+		                            <tr>
+		                                <td class="w30"  width="30"></td>
+		                                <td class="w580"  width="580" valign="top">
+		                                    <p align="right" class="pagebottom-content-left">
+		                                        <a style="color:#f9af32;" href="http://digiteam-p5.com"><span style="color:#f9af32;">Site digiteam</span></a>
+		                                    </p>
+		                                </td>
+
+		                                <td class="w30"  width="30"></td>
+		                            </tr>
+		                            <tr>
+		                                <td colspan="5" height="10"></td>
+		                            </tr>
+		                            </tbody>
+		                        </table>
+		                    </td>
+		                </tr>
+		                <tr>
+		                    <td class="w640"  width="640" height="60"></td>
+		                </tr>
+		                </tbody>
+		            </table>
+		        </td>
+		    </tr>
+		    </tbody>
+		</table>
+
+		<div style="margin-left:10%;margin-right:10%;">
+		<div class="logo-digiteam"></div>
 		<div class="devis-numero">
 			<p><strong>DEVIS</strong> n°{{ devis.id }}</p>
 		</div>
@@ -366,6 +760,7 @@
 				<p>SWIFT/BIC : FRHHCXX1001</p>
 			</div>
 			
+		</div>
 		</div>
 		
 	</body>
