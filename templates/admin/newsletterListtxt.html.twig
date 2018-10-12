@@ -1,0 +1,12 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Liste des abonnés aux newsletters{% endblock %}
+
+{% block body %}
+	
+	{% for newsletter in newsletters %}
+		<p>"{{newsletter.email}}",</p>
+	{% endfor %}
+
+
+{% endblock %}

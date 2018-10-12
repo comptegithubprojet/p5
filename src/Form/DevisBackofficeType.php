@@ -14,11 +14,12 @@ class DevisBackofficeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('packStarter')
-            ->add('packChallenger')
-            ->add('packExpert')
-            ->add('inboundMarketing')
-            ->add('consulting')
+            ->add('caseStarterPack')
+            ->add('caseChallengerPack')
+            ->add('caseExpertPack')
+            ->add('caseInboundMarketing')
+            ->add('caseConsulting')
+            ->add('caseDesign')
             ->add('civilite', ChoiceType::class, array(
                 'choices' => array(
                     'Mme' => 'Mme',

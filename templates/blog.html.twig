@@ -1,8 +1,23 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>DigiTeam - agence digitale sport</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}" />
 
-{% block body %}
+    <title>{% block title %}DigiTeam{% endblock %}</title>
+
+    {% include 'layout/stylesheets.html.twig' %}
+
+</head>
 
 <body>
+{% include 'layout/navbar.html.twig' %}
 
 <div class="titlepage">
 
@@ -13,7 +28,7 @@
                     <div class="">
                         <div class="">
                             <div class="home_text ">
-                                <h1 class="text-yellow">Notre blog</h1>
+                                <h1 class="text-orange">Notre blog</h1>
                             </div>
                         </div>
                     </div>
@@ -23,19 +38,22 @@
         </div>
     </div>
 <br/><br/><br/><br/>
+
+
+
 <div class="container">
 <div class="">
     <div class="filters-button-group text-right sm-text-center">
-        <button class="btn btn-default filter-button" data-filter="tout">Tout</button>
-        <button class="btn btn-default filter-button" data-filter="conseil">Conseil</button>
-        <button class="btn btn-default filter-button" data-filter="dev">Développement</button>
-        <button class="btn btn-default filter-button" data-filter="ref">Référencement</button>
-        <button class="btn btn-default filter-button" data-filter="mark">Marketing</button>
+        <button class="btn filter-button" data-filter="tout">Tout</button>
+        <button class="btn filter-button" data-filter="conseil">Web</button>
+        <button class="btn filter-button" data-filter="dev">Conseil</button>
+        <button class="btn filter-button" data-filter="ref">Inbound</button>
+        <button class="btn filter-button" data-filter="mark">Design</button>
     </div>
 </div>
     <br/><br/><br/><br/>
 <div class="row">
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/nature" alt="">
@@ -45,12 +63,13 @@
                 <h3>Heading</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/animals" alt="">
@@ -60,12 +79,12 @@
                 <h3>Heading2</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 filter tout">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/tech" alt="">
@@ -75,12 +94,12 @@
                 <h3>Heading3</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div><br/><br/><br/>
     </div>
 
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/nature" alt="">
@@ -90,12 +109,12 @@
                 <h3>Heading</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/animals" alt="">
@@ -105,12 +124,12 @@
                 <h3>Heading2</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 filter tout">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/tech" alt="">
@@ -120,12 +139,12 @@
                 <h3>Heading3</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div><br/><br/><br/>
     </div>
 
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/nature" alt="">
@@ -135,12 +154,12 @@
                 <h3>Heading</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4 filter conseil">
+    <div class="col-md-4 filter tout conseil">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/animals" alt="">
@@ -150,12 +169,12 @@
                 <h3>Heading2</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 tout">
         <div class="card-content">
             <div class="card-img">
                 <img src="https://placeimg.com/380/230/tech" alt="">
@@ -165,20 +184,13 @@
                 <h3>Heading3</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
                     voluptas totam</p>
-                <a href="#" class="btn-card">En savoir plus</a>
+                <a href="{{ path('article') }}" class="btn-card">En savoir plus</a>
             </div>
         </div>
     </div>
 </div> </div><br/><br/><br/>
-</div>
-<!-- details card section starts from here -->
-</body>
-{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bootstrap/js/plugins.js') }}"></script>
-    <script src="{{ asset('//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('stylperso/fonction.js') }}"></script>
-{% endblock %}
+{% include 'layout/footer.html.twig' %}
+</body>
+{% include 'layout/javascripts.html.twig' %}
+

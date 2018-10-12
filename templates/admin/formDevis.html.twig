@@ -7,11 +7,11 @@
     <div class="col-xs-offset-1 col-xs-3">
         <div class="form-group">
             <div>
-                {{ form_widget(form.packStarter, { 'attr': {'class': ''} }) }}
-                {{ form_label(form.packStarter, "Pack Starter", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(form.caseStarterPack, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseStarterPack, "Pack Starter", {'label_attr': {'class': 'control-label'}}) }}
             </div>  
             <div>
-                {{ form_errors(form.packStarter, { 'attr': {'class': 'form-control '} }) }}
+                {{ form_errors(form.caseStarterPack, { 'attr': {'class': 'form-control '} }) }}
             </div>
         </div>
     </div>
@@ -19,11 +19,11 @@
     <div class="col-xs-offset-1 col-xs-3">
         <div class="form-group">
             <div>
-                {{ form_widget(form.packChallenger, { 'attr': {'class': ''} }) }}
-                {{ form_label(form.packChallenger, "Pack Challenger", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(form.caseChallengerPack, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseChallengerPack, "Pack Challenger", {'label_attr': {'class': 'control-label'}}) }}
             </div>  
             <div>
-                {{ form_errors(form.packChallenger, { 'attr': {'class': 'form-control '} }) }}
+                {{ form_errors(form.caseChallengerPack, { 'attr': {'class': 'form-control '} }) }}
             </div>
         </div>
     </div>
@@ -31,11 +31,11 @@
     <div class="col-xs-offset-1 col-xs-3">
         <div class="form-group">
             <div>
-                {{ form_widget(form.packExpert, { 'attr': {'class': ''} }) }}
-                {{ form_label(form.packExpert, "Pack Expert", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(form.caseExpertPack, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseExpertPack, "Pack Expert", {'label_attr': {'class': 'control-label'}}) }}
             </div>  
             <div>
-                {{ form_errors(form.packExpert, { 'attr': {'class': 'form-control '} }) }}
+                {{ form_errors(form.caseExpertPack, { 'attr': {'class': 'form-control '} }) }}
             </div>
         </div>
     </div>
@@ -47,11 +47,11 @@
     <div class="col-xs-offset-1 col-xs-3">
         <div class="form-group">
             <div>
-                {{ form_widget(form.inboundMarketing, { 'attr': {'class': ''} }) }}
-                {{ form_label(form.inboundMarketing, "Inbound Marketing", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(form.caseInboundMarketing, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseInboundMarketing, "Inbound Marketing", {'label_attr': {'class': 'control-label'}}) }}
             </div>  
             <div>
-                {{ form_errors(form.inboundMarketing, { 'attr': {'class': 'form-control '} }) }}
+                {{ form_errors(form.caseInboundMarketing, { 'attr': {'class': 'form-control '} }) }}
             </div>
         </div>
     </div>
@@ -59,11 +59,23 @@
     <div class="col-xs-offset-1 col-xs-3">
         <div class="form-group">
             <div>
-                {{ form_widget(form.consulting, { 'attr': {'class': ''} }) }}
-                {{ form_label(form.consulting, "Consulting", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(form.caseConsulting, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseConsulting, "Consulting", {'label_attr': {'class': 'control-label'}}) }}
             </div>  
             <div>
-                {{ form_errors(form.consulting, { 'attr': {'class': 'form-control '} }) }}
+                {{ form_errors(form.caseConsulting, { 'attr': {'class': 'form-control '} }) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-offset-1 col-xs-3">
+        <div class="form-group">
+            <div>
+                {{ form_widget(form.caseDesign, { 'attr': {'class': ''} }) }}
+                {{ form_label(form.caseDesign, "Design", {'label_attr': {'class': 'control-label'}}) }}
+            </div>  
+            <div>
+                {{ form_errors(form.caseDesign, { 'attr': {'class': 'form-control '} }) }}
             </div>
         </div>
     </div>

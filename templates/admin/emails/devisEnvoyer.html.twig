@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<title>Devis</title>
+    	<meta name="devis" content="devis">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="{{ asset('styleAdmin/styleDevisEmail.css') }}">
+	</head>
+	<body>
+		<div class="logo-digiteam"><img src="{{ asset('images/logo2.png') }}"></div>
+		<div class="devis-numero">
+			<p><strong>DEVIS</strong> n°{{ devis.id }}</p>
+		</div>
+
+		<div class="informations-emetteur-destinataire">
+
+			<div class="emetteur-champs">
+				<p>Emis par</p>
+				<p>Contact</p>
+				<p>Date du devis</p>
+				<p>Référence du devis</p>
+				<p>Modalité de paiement</p>				
+			</div>
+
+			<div class="emetteur-infos">
+				<p>DIGITEAM</p>
+				<p>DIGITEAM</p>
+				<p>{{ "now"|date("d/m/Y") }}</p>
+				<p>{{ devis.id }}</p>
+				<p>Solde à la livraison</p>				
+			</div>
+
+			<div class="destinataire">
+				<p><strong>Destinataire</strong></p>
+				<p id="destinataire-margin-top">{{ devis.civilite }} {{ devis.prenom }} {{ devis.nom }}</p>
+				<p>{{ devis.adresse }}</p>
+				<p>{{ devis.codePostal }} {{ devis.ville }}</p>
+				<p>France</p>				
+			</div>			
+		</div>
+
+		<table class="table-devis">
+			<thead>
+
+				<tr>
+					<th class="th-description">Description</th>
+					<th class="th-charge">Charge (jours)</th>
+					<th class="th-prixHT">Prix HT</th>
+					<th class="th-TVA">TVA</th>
+					<th class="th-TTC">Prix TTC</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				{% if devis.caseStarterPack == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>Création du site WordPress (1 à 5 pages)</p>
+							<p>Création formulaire de contact</p>
+							<p>Intégration de votre contenu</p>
+						</th>
+						<th><p>4</p></th>
+						<th><p>805.56€</p></th>
+						<th><p>20%</p></th>
+						<th><p>966.67€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left"><p>Référencement naturel</p></th>
+						<th><p>1</p></th>
+						<th><p>201.39€</p></th>
+						<th><p>20%</p></th>
+						<th><p>241.67€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left"><p>Hébergement du nom de domaine et du site pendant un an</p></th>
+						<th><p>0.5</p></th>
+						<th><p>100.69€</p></th>
+						<th><p>20%</p></th>
+						<th><p>120.83€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left"><p>Formation</p></th>
+						<th><p>0.5</p></th>
+						<th><p>100.69€</p></th>
+						<th><p>20%</p></th>
+						<th><p>120.83€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if devis.caseChallengerPack == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>Création du site WordPress (5 à 15 pages), installation plugin</p>
+							<p>Création formulaire de contact</p>
+							<p>Création logo</p>
+							<p>Intégration de votre contenu</p>							
+						</th>
+						<th><p>7.5</p></th>
+						<th><p>1420.46€</p></th>
+						<th><p>20%</p></th>
+						<th><p>1704.55€</p></th>
+					</tr>				
+
+					<tr>
+						<th class="th-align-left">
+							<p>Référencement SEO</p>							
+						</th>
+						<th><p>1.5</p></th>
+						<th><p>284.09€</p></th>
+						<th><p>20%</p></th>
+						<th><p>340.91€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Hébergement du nom de domaine et du site pendant un an</p>							
+						</th>
+						<th><p>0.5</p></th>
+						<th><p>94.70€</p></th>
+						<th><p>20%</p></th>
+						<th><p>113.64€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Création pages réseaux sociaux</p>
+							<p>Formation</p>	
+						</th>
+						<th><p>1.5</p></th>
+						<th><p>284.09€</p></th>
+						<th><p>20%</p></th>
+						<th><p>340.91€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if devis.caseExpertPack == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>Stratégie marketing</p>						
+						</th>
+						<th><p>2.5</p></th>
+						<th><p>438.60€</p></th>
+						<th><p>20%</p></th>
+						<th><p>526.32€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Cahier des charges sur mesure</p>							
+						</th>
+						<th><p>1.5</p></th>
+						<th><p>263.16€</p></th>
+						<th><p>20%</p></th>
+						<th><p>315.79€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Création du site</p>
+							<p>Création formulaire de contact</p>
+							<p>Blog</p>
+							<p>Espace d’administration</p>
+							<p>Création logo</p>
+							<p>Intégration de votre contenu (max 100 pages) ou sur mesure</p>							
+						</th>
+						<th><p>10.5</p></th>
+						<th><p>1842.11€</p></th>
+						<th><p>20%</p></th>
+						<th><p>2210.53€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Stratégie SEO personnalisée Phase de déploiement</p>							
+						</th>
+						<th><p>2.5</p></th>
+						<th><p>438.60€</p></th>
+						<th><p>20%</p></th>
+						<th><p>526.32€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Hébergement du nom de domaine et du site pendant un an</p>							
+						</th>
+						<th><p>0.5</p></th>
+						<th><p>87.72€</p></th>
+						<th><p>20%</p></th>
+						<th><p>105.26€</p></th>
+					</tr>
+
+					<tr>
+						<th class="th-align-left">
+							<p>Création pages réseaux sociaux</p>
+							<p>Formation</p>							
+						</th>
+						<th><p>1.5</p></th>
+						<th><p>263.16€</p></th>
+						<th><p>20%</p></th>
+						<th><p>315.79€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if devis.caseInboundMarketing == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationInboundMarketing }}</p>
+								
+						</th>
+						<th><p>{{ devis.chargeInboundMarketing }}</p></th>
+						<th><p>{{ devis.prixHTInboundMarketing }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCInboundMarketing }}€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if devis.caseConsulting == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationConsulting }}</p>								
+						</th>
+						<th><p>{{ devis.chargeConsulting }}</p></th>
+						<th><p>{{ devis.prixHTConsulting }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCConsulting }}€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if devis.caseDesign == true %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationDesign }}</p>								
+						</th>
+						<th><p>{{ devis.chargeDesign }}</p></th>
+						<th><p>{{ devis.prixHTDesign }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCDesign }}€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if (devis.designationOption1 != null and  devis.prixHTOption1  != null) %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationOption1 }}</p>								
+						</th>
+						<th><p>{{ devis.chargeOption1 }}</p></th>
+						<th><p>{{ devis.prixHTOption1 }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCOption1 }}€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if (devis.designationOption2 != null and  devis.prixHTOption2  != null) %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationOption2 }}</p>								
+						</th>
+						<th><p>{{ devis.chargeOption2 }}</p></th>
+						<th><p>{{ devis.prixHTOption2 }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCOption2 }}€</p></th>
+					</tr>
+				{% endif %}
+
+				{% if (devis.designationOption3 != null and  devis.prixHTOption3  != null) %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationOption3 }}</p>								
+						</th>
+						<th><p>{{ devis.chargeOption3 }}</p></th>
+						<th><p>{{ devis.prixHTOption3 }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCOption3 }}€</p></th>
+					</tr>
+				{% endif %}	
+
+				{% if (devis.designationOption4 != null and  devis.prixHTOption4  != null) %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationOption4 }}</p>								
+						</th>
+						<th><p>{{ devis.chargeOption4 }}</p></th>
+						<th><p>{{ devis.prixHTOption4 }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCOption4 }}€</p></th>
+					</tr>
+				{% endif %}	
+
+				{% if (devis.designationOption5 != null and  devis.prixHTOption5  != null) %}
+					<tr>
+						<th class="th-align-left">
+							<p>{{ devis.designationOption5 }}</p>								
+						</th>
+						<th><p>{{ devis.chargeOption5 }}</p></th>
+						<th><p>{{ devis.prixHTOption5 }}€</p></th>
+						<th><p>20%</p></th>
+						<th><p>{{ devis.prixTTCOption5 }}€</p></th>
+					</tr>
+				{% endif %}
+				
+			</tbody>
+			
+		</table>
+
+		<div class="montant-total">
+
+			<div class="champs-montant-total">
+				<p><strong>TOTAL HT</strong></p>
+				<p><strong>TOTAL TVA</strong></p>
+				<p id="margin-top-border"><strong>TOTAL TTC</strong></p>
+				<p id="margin-top-accompte">En votre aimable acompte de 50%</p>
+			</div>
+
+			<div class="valeur-montant-total">
+				<p>{{ devis.prixTotalHT }}€</p>
+				<p>{{ devis.prixTotalTVA }}€</p>
+				<p id="margin-top-border"><strong>{{ devis.prixTotalTTC }}€</strong></p>
+				<p id="margin-top-accompte"><strong>{{ devis.prixTotalTTC / 2 }}€</strong></p>
+			</div>
+			
+		</div>
+
+		<div class="signatures">
+
+			<div class="signature-agence">
+				<p>Notre signature précédée de la mention « lu et accepté ».</p>				
+			</div>
+
+			<div class="signature-client">
+				<p>
+					Votre signature précédée de la mention « Lu etaccepté ». Merci de parapher les 5 pages des conditions générales de l’offre.
+				</p>
+			</div>
+
+		</div>	
+
+
+		<div class="footer">
+
+			<div class="adresse-digiteam">
+				<p id="border-top-margin-bottom"><strong>DigiTeam</strong></p>
+				<p>3 rue de la Comédie</p>
+				<p>34000 Montpellier</p>
+				<p>N° SIREN ou SIRET : xxxxx</p>
+				<p>N° TVA : FRXX999999999</p>				
+			</div>
+
+			<div class="adresse-contact">
+				<p id="border-top-margin-bottom"><strong>Contact</strong></p>
+				<p>DigiTeam</p>
+				<p>Tel : 04-67-00-00-12</p>
+				<p>Mail : contact@digteam.com</p>
+				<p>Site : www.digiteam-p5.com</p>				
+			</div>
+
+			<div class="adresse-banque">
+				<p id="border-top-margin-bottom"><strong>Détails bancaires</strong></p>
+				<p>Banque : BNP Paribas</p>
+				<p>Code banque : 100000</p>
+				<p>Numéro de compte : 12345678</p>
+				<p>IBAN : FR2341124098234</p>
+				<p>SWIFT/BIC : FRHHCXX1001</p>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

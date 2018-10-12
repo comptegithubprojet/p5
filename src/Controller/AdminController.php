@@ -7,14 +7,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Entity\Devis;
 use App\Form\DevisBackofficeType;
+use App\Form\DevisEnvoyerType;
 use App\Service\statutDevisRedirection;
 use App\Entity\Newsletter;
+use App\Service\avantEnvoyerDevis;
+use App\Service\prixDevis;
+use App\Service\prixServices;
+use App\Service\prixOptions;
 
 class AdminController extends AbstractController
 {
@@ -24,6 +30,11 @@ class AdminController extends AbstractController
      */
     public function articles()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Article::class);
 
         $articles = $repository->findAll();
@@ -39,6 +50,11 @@ class AdminController extends AbstractController
      */
     public function articleAdd(Request $request)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $article = new Article();
 
         $form = $this->createForm(ArticleType::class, $article);
@@ -79,6 +95,11 @@ class AdminController extends AbstractController
      */
     public function articleEdit(Article $article, Request $request)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $imagePath = $article->getImage();
 
         $article->setImage(null);
@@ -125,6 +146,11 @@ class AdminController extends AbstractController
      */
     public function articleDelete(Article $article)
     {      
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $entityManager = $this->getDoctrine()->getManager();      
         $entityManager->remove($article);
         $entityManager->flush();
@@ -137,6 +163,11 @@ class AdminController extends AbstractController
      */
     public function commentaires()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Commentaire::class);
 
         $commentaires = $repository->findAll();
@@ -152,6 +183,11 @@ class AdminController extends AbstractController
      */
     public function commentaireDelete(Commentaire $commentaire)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($commentaire);
         $entityManager->flush();
@@ -164,6 +200,11 @@ class AdminController extends AbstractController
      */
     public function devisNouveaux()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Devis::class);
 
         $devis = $repository->findBy(['statut' => 'nouveaux']);
@@ -179,6 +220,11 @@ class AdminController extends AbstractController
      */
     public function devisEnAttente()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Devis::class);
 
         $devis = $repository->findBy(['statut' => 'en attente']);
@@ -194,6 +240,11 @@ class AdminController extends AbstractController
      */
     public function devisSignes()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Devis::class);
 
         $devis = $repository->findBy(['statut' => 'signes']);
@@ -209,6 +260,11 @@ class AdminController extends AbstractController
      */
     public function devisArchives()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Devis::class);
 
         $devis = $repository->findBy(['statut' => 'archives']);
@@ -220,12 +276,52 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/devis/send", name="devis_send")
+     * @Route("/admin/devis/envoyer/{id}", name="devis_envoyer")
      */
-    public function devisSend()
+    public function devisEnvoyer(
+        Devis $devis, 
+        Request $request, 
+        avantEnvoyerDevis $avantEnvoyerDevis, 
+        prixDevis $prixDevis, 
+        prixServices $prixServices,
+        prixOptions $prixOptions
+    )
     {
-        return $this->render('admin/devisSend.html.twig', [
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
+        $avantEnvoyerDevis->remplissage($devis);
+
+        $form = $this->createForm(DevisEnvoyerType::class, $devis);
+        
+        $devis->setCaseObligatoire(1);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $avantEnvoyerDevis->remplissage($devis);
+
+            $prixServices->calculer($devis);
+            $prixOptions->calculer($devis);
+
+            $prixDevis->calculer($devis);
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($devis);
+            $manager->flush();
+
+            return $this->redirectToRoute('testDevis',array(
+                'id' => $devis->getId(),
+            )); 
+        }        
+
+        return $this->render('admin/devisEnvoyer.html.twig', [
             'controller_name' => 'AdminController',
+            'devis' => $devis,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -234,6 +330,11 @@ class AdminController extends AbstractController
      */
     public function devisStatutSignes(Devis $devis)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $devis->setStatut('signes');
 
         $manager = $this->getDoctrine()->getManager();
@@ -248,6 +349,11 @@ class AdminController extends AbstractController
      */
     public function devisStatutArchives(Devis $devis)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $devis->setStatut('archives');
 
         $manager = $this->getDoctrine()->getManager();
@@ -262,6 +368,11 @@ class AdminController extends AbstractController
      */
     public function devisAdd(Request $request, statutDevisRedirection $statutDevisRedirection)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $devis = new Devis();
 
         $form = $this->createForm(DevisBackofficeType::class, $devis);
@@ -296,6 +407,11 @@ class AdminController extends AbstractController
      */
     public function devisEdit(Devis $devis, Request $request, statutDevisRedirection $statutDevisRedirection)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $form = $this->createForm(DevisBackofficeType::class, $devis);
         
         $devis->setCaseObligatoire(1);
@@ -328,6 +444,11 @@ class AdminController extends AbstractController
      */
     public function devisDelete(Devis $devis, statutDevisRedirection $statutDevisRedirection)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $statutDevis = $devis->getStatut();
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -344,6 +465,11 @@ class AdminController extends AbstractController
      */
     public function newsletterList()
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+
         $repository = $this->getDoctrine()->getRepository(Newsletter::class);
 
         $newsletters = $repository->findAll();
@@ -355,16 +481,81 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/newsletter/listtxt", name="newsletter_listtxt")
+     */
+    public function newsletterListtxt(Request $request)
+    {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+        
+        $repository = $this->getDoctrine()->getRepository(Newsletter::class);
+
+        $newsletters = $repository->findAll();
+
+        return $this->render('admin/newsletterListtxt.html.twig', [
+            'controller_name' => 'AdminController',
+            'newsletters' => $newsletters,
+        ]);
+    }  
+
+    /**
      * @Route("/admin/newsletter/delete/{id}", name="newsletter_delete")
      */
     public function newsletterDelete(Newsletter $newsletter)
     {
+        if(!isset($_SESSION['admin']))
+        {
+            return $this->redirectToRoute('authentification');
+        }
+        
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($newsletter);
         $entityManager->flush();
 
         return $this->redirectToRoute('newsletter_list');   
-    }   
+    }
+
+    /**
+     * @Route("/users/login", name="login")
+     */
+    public function login(Request $request)
+    {
+        $username = $request->request->get('username');
+        $password = $request->request->get('password');
+
+        if($username == 'admin' && $password == 'mdp')
+        {
+            if(!isset($admin))
+            {
+                $admin = new Session();
+            }            
+            
+            $_SESSION["admin"] = "admin";
+
+            return $this->redirectToRoute('articles');
+        }
+
+        return $this->redirectToRoute('authentification');
+    }
+
+    /**
+     * @Route("/users/logout", name="logout")
+     */
+    public function logout(Request $request)
+    {
+        if(isset($_SESSION['admin']))
+        {
+            unset($_SESSION['admin']);
+
+            return $this->redirectToRoute('login');
+        }
+
+        return $this->redirectToRoute('authentification');
+    }
+
+
 
     
 }

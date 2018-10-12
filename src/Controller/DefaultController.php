@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     }
 
 	/**
-	 * @Route("/agency", name="agency")
+	 * @Route("/agency", name="agenceDigiTeam")
 	 */
 	public function agency(){
 		return $this->render('agency.html.twig');
@@ -43,4 +43,52 @@ class DefaultController extends AbstractController
 		return $this->render('blog.html.twig');
 	}
 
+	/**
+	 * @Route("/contact", name="contact")
+	 */
+	public function contact(){
+		return $this->render('contact.html.twig');
+	}
+
+	/**
+	 * @Route("/article", name="article")
+	 */
+	public function article(){
+		return $this->render('articleBlog.html.twig');
+	}
+
+	/**
+	 * @Route("/authentif", name="authentification")
+	 */
+	public function authentif(){
+		return $this->render('authentification.html.twig');
+	}
+
+	/**
+ * @Route("/siteMap", name="siteMap")
+ */
+	public function sitemap(){
+		return $this->render('siteMap.html.twig');
+	}
+
+	/**
+	 * @Route("/MentionsLegales", name="mentionsLegales")
+	 */
+	public function mentionsLegales(){
+		return $this->render('mentionsLegales.html.twig');
+	}
+
+	/**
+	 * @Route("/mail", name="mail")
+	 */
+	public function mail(){
+		return $this->render('/emails/sendDevis.html.twig');
+	}
+
+	/**
+	 * @Route("/devis", name="devis")
+	 */
+	public function devis(){
+		return $this->render('devis.html.twig');
+	}
 }

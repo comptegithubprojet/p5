@@ -19,7 +19,7 @@
 			  	<th class="col-xs-1">Téléphone</th>
 			  	<th class="col-xs-1">Email</th>
 			  	<th class="col-xs-1">Services</th>
-			  	<th class="col-xs-1">Afficher/Envoyer</th>
+			  	<th class="col-xs-1">Envoyer</th>
 			  	<th class="col-xs-1">Modifier</th>
 			  	<th class="col-xs-1">Supprimer</th>
 			</tr>
@@ -40,29 +40,35 @@
 			        <th>
 			        	<ul>
 
-			        		{% if devi.packStarter == true %}
+			        		{% if devi.caseStarterPack == true %}
 			        			<li>Pack Starter</li>
 			        		{% endif %}
 
-			        		{% if devi.packChallenger == true %}
+			        		{% if devi.caseChallengerPack == true %}
 			        			<li>Pack Challenger</li>
 			        		{% endif %}
 
-			        		{% if devi.packExpert == true %}
+			        		{% if devi.caseExpertPack == true %}
 			        			<li>Pack Expert</li>
 			        		{% endif %}
 
-			        		{% if devi.inboundMarketing == true %}
+			        		{% if devi.caseInboundMarketing == true %}
 			        			<li>Inbound Marketing</li>
 			        		{% endif %}
 
-			        		{% if devi.consulting == true %}
+			        		{% if devi.caseConsulting == true %}
 			        			<li>Consulting</li>
+			        		{% endif %}
+
+			        		{% if devi.caseDesign == true %}
+			        			<li>Design</li>
 			        		{% endif %}
 
 			        	</ul> 
 			        </th>
-			        <th></th>
+			        <th class="btn-admin-table">
+			        	<a role="button" class="btn btn-primary" href="/admin/devis/envoyer/{{ devi.id }}">Enovyer</a>
+			        </th>
 			        <th class="btn-admin-table">
 			        	<a role="button" class="btn btn-warning" href='/admin/devis/edit/{{ devi.id }}'>
 			        		<span class="glyphicon glyphicon-edit"></span>			        			

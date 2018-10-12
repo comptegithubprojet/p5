@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use App\Entity\Devis;
 use App\Form\ArticleType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
@@ -37,6 +38,17 @@ class TestController extends AbstractController
             'controller_name' => 'TestController',
             'article' => $article,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/test/devis/{id}", name="testDevis")
+     */
+    public function testDevis(Devis $devis)
+    {
+        return $this->render('admin/emails/devisEnvoyer.html.twig', [
+            'controller_name' => 'TestController',
+            'devis' => $devis,
         ]);
     }
 }

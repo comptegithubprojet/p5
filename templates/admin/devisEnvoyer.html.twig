@@ -1,0 +1,316 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Envoyer un devis{% endblock %}
+
+{% block body %}
+
+	<h1>Envoyer un devis</h1>
+
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+	{{ form_errors(form) }}
+
+
+	<table class="table table-bordered table-striped table-condensed justify">
+
+		<thead>
+
+			<tr>
+				<th class="col-xs-3">Service</th>
+			  	<th class="col-xs-5">Designation</th>
+			  	<th class="col-xs-1">Charge</th>
+			  	<th class="col-xs-3">Prix HT</th>
+			</tr>
+
+		</thead>
+
+		<tbody>	
+
+			{% if devis.caseStarterPack == true %}
+				<tr>
+					<th>Pack Starter</th>
+					<th>{{ form_widget(form.designationStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.chargeStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.prixHTStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+				</tr>					
+			{% endif %}
+
+			{% if devis.caseStarterPack == false %}
+				<tr class="ide-tr">
+					<th>Pack Starter</th>
+					<th>{{ form_widget(form.designationStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTStarterPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>					
+			{% endif %}
+
+			{% if devis.caseChallengerPack == true %}
+				<tr>
+					<th>Pack Challenger</th>
+					<th>{{ form_widget(form.designationChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.chargeChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.prixHTChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseChallengerPack == false %}
+				<tr class="ide-tr">
+					<th>Pack Challenger</th>
+					<th>{{ form_widget(form.designationChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTChallengerPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseExpertPack == true %}
+				<tr>
+					<th>Pack Expert</th>
+					<th>{{ form_widget(form.designationExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.chargeExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+					<th>{{ form_widget(form.prixHTExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'disabled':''} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseExpertPack == false %}
+				<tr class="ide-tr">
+					<th>Pack Expert</th>
+					<th>{{ form_widget(form.designationExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTExpertPack, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseInboundMarketing == true %}
+				<tr>
+					<th>Inbound Marketing</th>
+					<th>{{ form_widget(form.designationInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseInboundMarketing == false %}
+				<tr class="ide-tr">
+					<th>Inbound Marketing</th>
+					<th>{{ form_widget(form.designationInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTInboundMarketing, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseConsulting == true %}
+				<tr>
+					<th>Consulting</th>
+					<th>{{ form_widget(form.designationConsulting, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeConsulting, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTConsulting, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseConsulting == false %}
+				<tr class="ide-tr">
+					<th>Consulting</th>
+					<th>{{ form_widget(form.designationConsulting, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeConsulting, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTConsulting, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseDesign == true %}
+				<tr>
+					<th>Design</th>
+					<th>{{ form_widget(form.designationDesign, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeDesign, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTDesign, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+			{% if devis.caseDesign == false %}
+				<tr class="ide-tr">
+					<th>Design</th>
+					<th>{{ form_widget(form.designationDesign, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;'} }) }}</th>
+					<th>{{ form_widget(form.chargeDesign, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+					<th>{{ form_widget(form.prixHTDesign, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				</tr>
+			{% endif %}
+
+		</tbody>
+
+	</table>
+
+	<table class="table table-bordered table-striped table-condensed justify">
+
+		<thead>
+
+			<tr>
+				<th class="col-xs-3">Option</th>
+			  	<th class="col-xs-5">Designation</th>
+			  	<th class="col-xs-1">Charge</th>
+			  	<th class="col-xs-3">Prix HT</th>
+			</tr>
+
+		</thead>
+
+		<tbody>
+
+			<tr>
+				<th style="height:100px;">
+					<a id="btnOption1show" class="btn btn-primary">Option 1</a>
+					<a id="btnOption1hide" class="btn btn-danger">Option 1</a>
+				</th>
+				<th class="thOption1">{{ form_widget(form.designationOption1, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;' } }) }}</th>
+				<th class="thOption1">{{ form_widget(form.chargeOption1, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				<th class="thOption1">{{ form_widget(form.prixHTOption1, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+			</tr>
+
+			<tr>
+				<th style="height:100px;">
+					<a id="btnOption2show" class="btn btn-primary">Option 2</a>
+					<a id="btnOption2hide" class="btn btn-danger">Option 2</a>
+				</th>
+				<th class="thOption2">{{ form_widget(form.designationOption2, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;' } }) }}</th>
+				<th class="thOption2">{{ form_widget(form.chargeOption2, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				<th class="thOption2">{{ form_widget(form.prixHTOption2, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+			</tr>
+
+			<tr>
+				<th style="height:100px;">
+					<a id="btnOption3show" class="btn btn-primary">Option 3</a>
+					<a id="btnOption3hide" class="btn btn-danger">Option 3</a>
+				</th>
+				<th class="thOption3">{{ form_widget(form.designationOption3, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;' } }) }}</th>
+				<th class="thOption3">{{ form_widget(form.chargeOption3, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				<th class="thOption3">{{ form_widget(form.prixHTOption3, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+			</tr>
+
+			<tr>
+				<th style="height:100px;">
+					<a id="btnOption4show" class="btn btn-primary">Option 4</a>
+					<a id="btnOption4hide" class="btn btn-danger">Option 4</a>
+				</th>
+				<th class="thOption4">{{ form_widget(form.designationOption4, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;' } }) }}</th>
+				<th class="thOption4">{{ form_widget(form.chargeOption4, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				<th class="thOption4">{{ form_widget(form.prixHTOption4, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+			</tr>
+
+			<tr>
+				<th style="height:100px;">
+					<a id="btnOption5show" class="btn btn-primary">Option 5</a>
+					<a id="btnOption5hide" class="btn btn-danger">Option 5</a>
+				</th>
+				<th class="thOption5">{{ form_widget(form.designationOption5, { 'attr': {'class': 'form-control th-devis-envoyer', 'style' : 'height:80px;' } }) }}</th>
+				<th class="thOption5">{{ form_widget(form.chargeOption5, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+				<th class="thOption5">{{ form_widget(form.prixHTOption5, { 'attr': {'class': 'form-control th-devis-envoyer'} }) }}</th>
+			</tr>
+
+		</tbody>
+
+	</table>	
+
+	<div class="row">
+	    <div class="col-xs-12">
+	        <div class="form-group">
+	            <div>
+	                {{ form_label(form.messageEmail, "Corps Email", {'label_attr': {'class': 'control-label'}}) }}
+	            </div>  
+	            <div>
+	                {{ form_widget(form.messageEmail, { 'attr': {'class': '', 'required':''} }) }}
+	            </div>
+	            <div>
+	                {{ form_errors(form.messageEmail, { 'attr': {'class': 'form-control '} }) }}
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg col-xs-offset-8 col-xs-4'}, 'label': 'Envoyer'}) }}
+
+	{{ form_rest(form) }}
+
+	{{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ parent() }}
+
+	<script type="text/javascript">
+
+	$('.thOption1').hide();
+	$('.thOption2').hide();
+	$('.thOption3').hide();
+	$('.thOption4').hide();
+	$('.thOption5').hide();
+	$('#btnOption1hide').hide();
+	$('#btnOption2hide').hide();
+	$('#btnOption3hide').hide();
+	$('#btnOption4hide').hide();
+	$('#btnOption5hide').hide();
+
+	$('#btnOption1show').click(function() 
+	{
+    	$('.thOption1').show();
+    	$('#btnOption1hide').show();
+    	$('#btnOption1show').hide();
+	});
+	$('#btnOption2show').click(function() 
+	{
+    	$('.thOption2').show();
+    	$('#btnOption2hide').show();
+    	$('#btnOption2show').hide();
+	});
+	$('#btnOption3show').click(function() 
+	{
+    	$('.thOption3').show();
+    	$('#btnOption3hide').show();
+    	$('#btnOption3show').hide();
+	});
+	$('#btnOption4show').click(function() 
+	{
+    	$('.thOption4').show();
+    	$('#btnOption4hide').show();
+    	$('#btnOption4show').hide();
+	});
+	$('#btnOption5show').click(function() 
+	{
+    	$('.thOption5').show();
+    	$('#btnOption5hide').show();
+    	$('#btnOption5show').hide();
+	});
+
+	$('#btnOption1hide').click(function() 
+	{
+    	$('.thOption1').hide();
+    	$('#btnOption1show').show();
+    	$('#btnOption1hide').hide();
+	});
+	$('#btnOption2hide').click(function() 
+	{
+    	$('.thOption2').hide();
+    	$('#btnOption2show').show();
+    	$('#btnOption2hide').hide();
+	});
+	$('#btnOption3hide').click(function() 
+	{
+    	$('.thOption3').hide();
+    	$('#btnOption3show').show();
+    	$('#btnOption3hide').hide();
+	});
+	$('#btnOption4hide').click(function() 
+	{
+    	$('.thOption4').hide();
+    	$('#btnOption4show').show();
+    	$('#btnOption4hide').hide();
+	});
+	$('#btnOption5hide').click(function() 
+	{
+    	$('.thOption5').hide();
+    	$('#btnOption5show').show();
+    	$('#btnOption5hide').hide();
+	});
+
+	</script>
+
+
+{% endblock %}

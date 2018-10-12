@@ -14,9 +14,9 @@ use App\Service\addNewsletter;
 class FormController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact2", name="contact2")
      */
-    public function contact(Request $request, addNewsletter $addNewsletter)
+    public function contact2(Request $request, addNewsletter $addNewsletter, \Swift_Mailer $mailer)
     {
     	$contact = new Contact();
 
@@ -32,7 +32,22 @@ class FormController extends AbstractController
         	{
         		$newsletter = $addNewsletter->add($contact);
         		$manager->persist($newsletter);
-        	}        	
+        	}
+
+            $message = (new \Swift_Message('Demande de contact'))
+            ->setFrom($contact->getEmail())
+            ->setTo('digiteamp5@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    // templates/emails/registration.html.twig
+                    'emails/registration.html.twig',
+                    array('contact' => $contact)
+                ),
+                'text/html'
+            )
+            ;
+
+            $mailer->send($message);        	
 
             
             $manager->persist($contact);
@@ -47,9 +62,9 @@ class FormController extends AbstractController
     }
 
     /**
-     * @Route("/devis", name="devis")
+     * @Route("/devis2", name="devis2")
      */
-    public function devis(Request $request, addNewsletter $addNewsletter)
+    public function devis2(Request $request, addNewsletter $addNewsletter)
     {
     	$devis = new Devis();
 
