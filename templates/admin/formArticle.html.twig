@@ -40,6 +40,18 @@
     </div>
 
     <div class="form-group">
+        <div class="col-xs-offset-1">
+            {{ form_label(form.category, "Catégorie", {'label_attr': {'class': 'control-label'}}) }}
+        </div>  
+        <div class="col-xs-offset-1 col-xs-10">
+            {{ form_widget(form.category, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-xs-offset-1">
+            {{ form_errors(form.category, { 'attr': {'class': 'form-control '} }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
     	<div class="col-xs-offset-1">
     		{{ form_label(form.contenu, "Contenu", {'label_attr': {'class': 'control-label'}}) }}
     	</div>  

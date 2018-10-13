@@ -68,6 +68,11 @@ class Article
     private $slug;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $category;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\Image()
@@ -224,6 +229,18 @@ class Article
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

@@ -31,8 +31,13 @@ class DefaultController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+        	$this->addFlash(
+                'notice',
+                'Nous avons bien reçu votre demande d inscription aux newsletters.'
+            );
+
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($newlsetter);
+            $manager->persist($newsletter);
             $manager->flush();
 
             return $this->redirectToRoute('accueil');
@@ -79,11 +84,10 @@ class DefaultController extends AbstractController
 	}
 
 	/**
-	 * @Route("/article/{id}", name="article")
+	 * @Route("/article/{slug}", name="article")
 	 */
 	public function article(Article $article, Request $request, addNewsletter $addNewsletter)
 	{
-
 		$commentaire = new Commentaire();
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -107,7 +111,7 @@ class DefaultController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('article', array(
-            	'id' => $article->getId(),
+            	'slug' => $article->getSlug(),
             ));
         }
 

@@ -27,6 +27,11 @@ class FormController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $this->addFlash(
+                'notice',
+                'Nous avons bien reçu votre demande de contact. Nous nous dépêchons pour vous apporter une réponse très rapidement !'
+            );
+
             $manager = $this->getDoctrine()->getManager();
 
             if($contact->getCaseNewsletter() == 'true')
@@ -74,6 +79,11 @@ class FormController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $this->addFlash(
+                'notice',
+                'Nous avons bien reçu votre demande de devis. Nous nous dépêchons pour vous apporter une réponse très rapidement !'
+            );
+
         	$devis->setDateAjout(new \DateTime());
         	$devis->setStatut('nouveaux');
 

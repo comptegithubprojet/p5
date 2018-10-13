@@ -32,6 +32,15 @@ class ArticleType extends AbstractType
             ->add('image', FileType::class, array(
                 'required' => false,
             ))
+            ->add('category', ChoiceType::class, array(
+                'choices' => array(
+                    'Web'      => 'Web',
+                    'Conseil'      => 'Conseil',
+                    'Inbound Marketing'      => 'InboundMarketing',
+                    'Design'      => 'Design',                  
+
+                )                
+            ))
             ->add('save',      SubmitType::class)
         ;
     }

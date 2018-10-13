@@ -25,7 +25,6 @@ use Cocur\Slugify\Slugify;
 
 class AdminController extends AbstractController
 {
-
 	/**
      * @Route("/admin/articles", name="articles")
      */
@@ -318,7 +317,9 @@ class AdminController extends AbstractController
 
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($devis);
-            $manager->flush();            
+            $manager->flush();
+
+            $dateExpiration = date('d/m/Y', strtotime('+1 month'));            
 
             $message = (new \Swift_Message('Demande de devis'))
                 ->setFrom('digiteamp5@gmail.com')
@@ -328,6 +329,7 @@ class AdminController extends AbstractController
                     $this->renderView(
                         'admin/emails/devisEnvoyer.html.twig', array(
                             'devis' => $devis,
+                            'dateExpiration' => $dateExpiration,
                         )
                     ),
                     'text/html'

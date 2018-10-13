@@ -3,7 +3,7 @@
 {% block form %}
 	<div class="row">
 		
-        <div class="roomy-100" style="width:100%;">
+        <div style="width:100%;">
             
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
@@ -278,7 +278,7 @@
 			            <div class="form-group">
 			                <div>
 			                	{{ form_widget(form.caseObligatoire, { 'attr': {'class': ''} }) }}
-			                	<label>J'accepte les <a href="#">mentions légales</a> et la <a href="#">politique de confidentialité</a></label>
+			                	<label>J'accepte les <a href="{{ path('mentionsLegales') }}">mentions légales</a> et la <a href="{{ path('mentionsLegales') }}">politique de confidentialité</a></label>
 			                    
 			                </div>  
 			                <div>
