@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>DigiTeam - agence digitale sport - Notre blog</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}" />
+
+    <title>{% block title %}Page d'erreur 404 DigiTeam{% endblock %}</title>
+
+    {% include 'layout/stylesheets.html.twig' %}
+    <style>
+        body
+        {
+            background-color:#1D3F7C;
+        }
+        #errorpage {
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            -moz-flex-direction: column;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -moz-justify-content: center;
+            -webkit-justify-content: center;
+            -ms-justify-content: center;
+            justify-content: center;
+            cursor: default;
+            height: 100vh;
+            min-height: 35em;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+
+{% include 'layout/navbar.html.twig' %}
+{% block body %}
+
+
+    <section id="errorpage">
+        <div class="inner" >
+
+            <h2 class="exception-http">
+                HTTP {{ status_code }} <small>{{ status_text }}</small>
+            </h2>
+        </div>
+
+        <h1>Oups ! Page introuvable</h1> <br/><br/>
+
+        <p style="color: white">Vous avez tenté d’accéder à une page qui ne se trouve pas ou plus sur ce site.<br/>
+            Veuillez revenir sur la page d'accueil afin de continuer votre navigation sur notre site.<br/><br/></p>
+
+
+        <div style="text-align: center">
+            <a href="{{ path('accueil') }}"><button style="background-color: #f9af32;" type="button" id="retour" class="btn btn-danger">Back to Home</button></a>
+        </div>
+
+
+    </section>
+
+
+    {% include 'layout/footer.html.twig' %}
+{% endblock %}
+{% include 'layout/javascripts.html.twig' %}
