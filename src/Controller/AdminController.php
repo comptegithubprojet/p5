@@ -22,6 +22,7 @@ use App\Service\prixDevis;
 use App\Service\prixServices;
 use App\Service\prixOptions;
 use Cocur\Slugify\Slugify;
+use App\Service\SendMail;
 
 class AdminController extends AbstractController
 {
@@ -289,7 +290,8 @@ class AdminController extends AbstractController
         prixDevis $prixDevis, 
         prixServices $prixServices,
         prixOptions $prixOptions,
-        \Swift_Mailer $mailer
+        \Swift_Mailer $mailer,
+        SendMail $SendMail
     )
     {
         if(!isset($_SESSION['admin']))
@@ -321,22 +323,24 @@ class AdminController extends AbstractController
 
             $dateExpiration = date('d/m/Y', strtotime('+1 month'));            
 
-            $message = (new \Swift_Message('Demande de devis'))
-                ->setFrom('digiteamp5@gmail.com')
-                ->setTo($devis->getEmail());
+            //$message = (new \Swift_Message('Demande de devis'))
+            //    ->setFrom('digiteamp5@gmail.com')
+            //    ->setTo($devis->getEmail());
 
-            $message->setBody(
-                    $this->renderView(
-                        'admin/emails/devisEnvoyer.html.twig', array(
-                            'devis' => $devis,
-                            'dateExpiration' => $dateExpiration,
-                        )
-                    ),
-                    'text/html'
-                )
-            ;
+            //$message->setBody(
+            //        $this->renderView(
+            //            'admin/emails/devisEnvoyer.html.twig', array(
+            //                'devis' => $devis,
+            //                'dateExpiration' => $dateExpiration,
+            //            )
+            //        ),
+            //        'text/html'
+            //    )
+            //;
 
-            $mailer->send($message);
+            //$mailer->send($message);
+
+            $SendMail->SendMailDevis($devis, $dateExpiration);
 
             return $this->redirectToRoute('devis_nouveaux'); 
         }        

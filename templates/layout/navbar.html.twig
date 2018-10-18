@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default bootsnav navbar-fixed no-background white">
 
     <!-- Start Top Search -->
@@ -13,17 +14,6 @@
     <!-- End Top Search -->
 
     <div class="container">
-        <div class="attr-nav">
-            <ul>
-                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-            </ul>
-            <ul class="list-inline m-top-20">
-                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                <li><a href=""><i class="fa fa-instagram"></i></a></li>
-            </ul>
-        </div>
 
         <!-- Start Header Navigation -->
         <div class="navbar-header">
@@ -31,7 +21,7 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="{{ path('accueil') }}">
-                <img src="/images/logo.png" class="logoDT" alt="">
+                <img src="/images/logo.png" class="logoDT" alt="logo DigiTeam" title="logo agence Digiteam sport">
                 <!--<img src="assets/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
             </a>
         </div>
@@ -41,13 +31,22 @@
             <ul class="nav navbar-nav navbar-center">
                 <li><a href="{{ path('accueil') }}">Accueil</a></li>
                 <li><a href="{{path('agenceDigiTeam') }}">Agence</a></li>
-                <li><a href="{{ path('accueil') }}#expertise">Expertises</a></li>
-                <li><a href="{{ path ('services') }}">Services</a></li>
                 <li><a href="{{ path('accueil') }}#portfolio">Portfolio</a></li>
+                <li><a href="{{ path ('expertise') }}">Expertises</a></li>
+                <li><a href="{{ path ('services') }}">Services</a></li>
                 <li><a href="{{ path('blog') }}">Blog</a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
                 <li><a href="{{ path('devis') }}">Devis</a></li>
+                <div class="attr-nav list-inline m-top-20">
+                <li><a href="https://www.facebook.com/pg/equipeP5/posts/?ref=page_internal" target="_blank"><i class="fa fa-facebook" style="color: white;"></i></a></li>
+                <li><a href="https://twitter.com/digiteam2" target="_blank"><i class="fa fa-twitter" style="color: white;"></i></a></li>
+                <li><a href="https://fr.linkedin.com/school/openclassrooms/" target="_blank"><i class="fa fa-linkedin" style="color: white;"></i></a></li>
+                <li><a href="https://www.instagram.com/digiteamp5/?hl=fr" target="_blank"><i class="fa fa-instagram" style="color: white;"></i></a></li>
+                </div>
             </ul>
+
+            </div>
         </div><!-- /.navbar-collapse -->
+
     </div>
 </nav>

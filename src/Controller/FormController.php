@@ -11,13 +11,14 @@ use App\Entity\Devis;
 use App\Form\DevisType;
 use App\Service\addNewsletter;
 use App\Service\recevoirEmail;
+use App\Service\SendMail;
 
 class FormController extends AbstractController
 {
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request, addNewsletter $addNewsletter, \Swift_Mailer $mailer)
+    public function contact(Request $request, addNewsletter $addNewsletter, \Swift_Mailer $mailer, SendMail $SendMail)
     {
         $contact = new Contact();
 
@@ -43,19 +44,21 @@ class FormController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-            $message = (new \Swift_Message($contact->getSujet()))
-                ->setFrom($contact->getEmail())
-                ->setTo('digiteamp5@gmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'emails/recevoirEmail.html.twig',
-                        array('contact' => $contact)
-                    ),
-                    'text/html'
-                )
-            ;
+            //$message = (new \Swift_Message($contact->getSujet()))
+            //    ->setFrom($contact->getEmail())
+            //    ->setTo('digiteamp5@gmail.com')
+            //    ->setBody(
+            //        $this->renderView(
+            //            'emails/recevoirEmail.html.twig',
+            //            array('contact' => $contact)
+            //        ),
+            //        'text/html'
+            //    )
+            //;
 
-            $mailer->send($message);
+            //$mailer->send($message);
+
+            $SendMail->SendMailContact($contact);
 
             return $this->redirectToRoute('accueil');
         }

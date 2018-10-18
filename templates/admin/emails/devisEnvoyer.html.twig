@@ -713,9 +713,9 @@
 			</div>
 
 			<div class="valeur-montant-total">
-				<p>{{ devis.prixTotalHT }}€</p>
-				<p>{{ devis.prixTotalTVA }}€</p>
-				<p id="margin-top-border"><strong>{{ devis.prixTotalTTC }}€</strong></p>
+				<p>{{ devis.prixTotalHT | number_format(2, '.', ' ') }}€</p>
+				<p>{{ devis.prixTotalTVA | number_format(2, '.', ' ') }}€</p>
+				<p id="margin-top-border"><strong>{{ devis.prixTotalTTC | number_format(2, '.', ' ') }}€</strong></p>
 				<p id="margin-top-accompte"><strong>{{ devis.prixTotalTTC / 2 }}€</strong></p>
 			</div>
 			

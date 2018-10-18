@@ -28,21 +28,10 @@
             </div>
         </div>
     </div>
+
     <!-- End Top Search -->
 
-
     <div class="container">
-        <div class="attr-nav">
-            <ul>
-                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-            </ul>
-            <ul class="list-inline m-top-20">
-                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                <li><a href=""><i class="fa fa-instagram"></i></a></li>
-            </ul>
-        </div>
 
         <!-- Start Header Navigation -->
         <div class="navbar-header">
@@ -60,14 +49,23 @@
             <ul class="nav navbar-nav navbar-center">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#agence">Agence</a></li>
-                <li><a href="#expertise">Expertises</a></li>
-                <li><a href="{{ path ('services') }}">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="{{ path ('expertise') }}">Expertises</a></li>
+                <li><a href="{{ path ('services') }}">Services</a></li>
                 <li><a href="{{ path('blog') }}">Blog</a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
                 <li><a href="{{ path('devis') }}">Devis</a></li>
+                <div class="attr-nav list-inline m-top-20">
+                    <li><a href="https://www.facebook.com/pg/equipeP5/posts/?ref=page_internal" target="_blank"><i class="fa fa-facebook" style="color: white;"></i></a></li>
+                    <li><a href="https://twitter.com/digiteam2" target="_blank"><i class="fa fa-twitter" style="color: white;"></i></a></li>
+                    <li><a href="https://fr.linkedin.com/school/openclassrooms/" target="_blank"><i class="fa fa-linkedin" style="color: white;"></i></a></li>
+                    <li><a href="https://www.instagram.com/digiteamp5/?hl=fr" target="_blank"><i class="fa fa-instagram" style="color: white;"></i></a></li>
+                </div>
             </ul>
-        </div><!-- /.navbar-collapse -->
+
+        </div>
+    </div><!-- /.navbar-collapse -->
+
     </div>
 </nav>
 
@@ -101,7 +99,7 @@
                         <div class="hello">
                             <div class="slid_item">
                                 <div class="home_text ">
-                                    <h1 class="">Welcome to DigiTeam</h1>
+                                    <h1 class="text-orange">Agence de marketing sportif</h1>
                                     <h3 class="text-white text-uppercase">Création de sites internet et Webmarketing</h3>
                                 </div>
                             </div><!-- End off slid item -->
@@ -130,9 +128,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="main_about text-center">
-                        <h1 class="text-black">Votre agence à Montpellier</h1>
+                        <h1 class="text-black" style="font-size: 45px;">DigiTeam est une agence de création digitale basée à Montpellier</h1>
                         <br/><br/>
-                        <h3 class="text-black text-uppercase">Nous sommes prêts à relever votre nouveau défi !</h3>
+                        <h3 class="text-white text-uppercase" style="font-size: 40px">Nous sommes prêts à relever votre nouveau défi !</h3>
 
                         <a href="{{ path('agenceDigiTeam') }}" class="btn btn-primary m-top-100">Nous découvrir</a>
                     </div>
@@ -148,14 +146,17 @@
             <div class="row">
                 <div class="main_features fix roomy-70">
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="features_item">
                             <div class="head_title">
                                 <h2 class="text-uppercase">Notre <strong>Expertise</strong></h2>
                             </div>
                             <div class="featured_content">
-                                <p>Nous sommes une agence digitale spécialisée dans le domaine du sport, experte en <strong>création de site web</strong>,
-                                    <strong>en inbound marketing</strong>, <strong>design </strong> et <strong>audit/conseil</strong>.
+                                <p>Nous sommes une agence digitale spécialisée
+                                dans le domaine du sport, experte en <strong>création de site web</strong>,
+                                <strong>en inbound marketing</strong>,
+                                <strong>design </strong>
+                                <strong>audit/conseil</strong>.
                                 </p>
                             </div>
                         </div>
@@ -168,25 +169,26 @@
                                 <div class="divider_vertical"></div>
                                 <div class="col-xs-6">
                                     <div class="features_item_text">
-                                        <img src="{{ asset('bootstrap//images/featured1.jpg') }}" alt="" class="img-circle" />
+                                        <img src="{{ asset('/images/web.png') }}" alt="web" class="img-circle" />
+
                                         <p class="m-top-20">Web</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="features_item_text">
-                                        <img src="{{ asset('bootstrap//images/featured2.jpg') }}" alt="" class="img-circle" />
+                                        <img src="{{ asset('/images/consulting.png') }}" alt="consulting" class="img-circle" />
                                         <p class="m-top-20">Consulting</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="features_item_text m-top-50">
-                                        <img src="{{ asset('bootstrap//images/featured3.jpg') }}" alt="" class="img-circle" />
+                                        <img src="{{ asset('/images/inbound marketing.png') }}" alt="inbound marketing" class="img-circle" />
                                         <p class="m-top-20">Inbound marketing</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="features_item_text m-top-50">
-                                        <img src="{{ asset('bootstrap//images/featured4.jpg') }}" alt="" class="img-circle" />
+                                        <img src="{{ asset('/images/ux.png') }}" alt="ux design" class="img-circle" />
                                         <p class="m-top-20">Design</p>
                                     </div>
                                 </div>
@@ -194,42 +196,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+
+                    <div class="col-md-12" >
                         <br/><br/>
                     </div>
-                    <div class="col-md-12">
-                        <div class="skill">
-                            <div class="team_content_details_skills m-top-50">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="90%">
-                                            <label>Web</label>
-                                            <div class="teamskillbar-bar" style="width: 80%;"></div>
-                                        </div> <!-- End Skill Bar -->
-
-                                        <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="90%">
-                                            <label>Consulting</label>
-                                            <div class="teamskillbar-bar" style="width: 75%;"></div>
-                                        </div> <!-- End Skill Bar -->
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="90%">
-                                            <label>Inbound marketing</label>
-                                            <div class="teamskillbar-bar" style="width: 90%;"></div>
-                                        </div> <!-- End Skill Bar -->
-
-                                        <div class="teamskillbar clearfix m-top-50 text-uppercase" data-percent="98%">
-                                            <label>Design</label>
-                                            <div class="teamskillbar-bar" style="width: 98%;"></div>
-                                        </div> <!-- End Skill Bar -->
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div><!-- End off skill -->
-                        <br/><br/><br/><br/>
-                    </div><!-- End col-md-12 -->
 
                     <div align="center" >
                         <a href="{{ path ('expertise') }}" class="btn btn-default">En savoir plus</a>
@@ -270,7 +240,7 @@
                                     <br/>
                                     <h4 class="text-white">Site de la Commune de Bailly</h4>
                                     <p class="text-white">Wordpress</p>
-                                    <a href="http://www.elodie-rouel.fr/" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://www.elodie-rouel.fr/" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -282,7 +252,7 @@
                                     <br/><br/>
                                     <h4 class="text-white">Site de la ville de Lille</h4>
                                     <p class="text-white">Wordpress</p>
-                                    <a href="http://web-mairie-lille.fr/wordpress/" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://web-mairie-lille.fr/wordpress/" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -294,7 +264,7 @@
                                     <br/>
                                     <h4 class="text-white">Blog pour un écrivain</h4>
                                     <p class="text-white">Programmation Php</p>
-                                    <a href="http://blogforteroche.jutatibouet.fr/'" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://blogforteroche.jutatibouet.fr/'" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -306,7 +276,7 @@
                                     <br/><br/>
                                     <h4 class="text-white">Billetterie du Musée du Louvre</h4>
                                     <p class="text-white">Symfony 4</p>
-                                    <a href="http://billetteriedulouvre.jutatibouet.fr/" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://billetteriedulouvre.jutatibouet.fr/" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -318,7 +288,7 @@
                                     <br/>
                                     <h4 class="text-white">Site de la commune de Savenay</h4>
                                     <p class="text-white">Wordpress</p>
-                                    <a href="http://projet1.jutatibouet.fr/" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://projet1.jutatibouet.fr/" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -329,7 +299,7 @@
                                 <div><br/>
                                     <h4 class="text-white">Site Hockey Lille</h4>
                                     <p class="text-white">Wordpress</p>
-                                    <a href="http://roller-hockey-asso.fr/" class="btn btn-primary popup-img">Voir le site</a>
+                                    <a href="http://roller-hockey-asso.fr/" class="btn btn-primary">Voir le site</a>
                                 </div>
                             </div><!-- End off grid Hover area -->
                         </div><!-- End off grid item -->
@@ -349,10 +319,9 @@
                     <div class="main_about text-center">
                         <h1 class="text-black">Newsletter</h1>
                         <div>
-                            
-                            <div class="container">
+                            <div class="">
                                 <div class="row">
-                                    <div class="col-md-5" style="margin-left: 15%;">
+                                    <div class="col-md-12">
 
                                         {{ form_start(form) }}
 
@@ -364,17 +333,14 @@
                                         
                                         {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder' :'email@exemple.com', 'style': 'width: 20%;min-width: 300px;display: block;margin: 0 auto;margin-top: 25px;margin-bottom: 25px;'} }) }}
 
-                                        
-                                        
                                     </div>
                                     
-                                    <div class="col-md-3" style="padding-top: 8%;">
+                                    <div class="" style="padding-top: 8%;">
                                         
                                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Valider'}) }}
 
-                                        
                                     </div>
-                                </div>
+                                </div></div>
                                 <div class="col-xs-12" style="margin-top:20px;">                                        
 
                                     <label>{{ form_widget(form.caseObligatoire, { 'attr': {'class': '', 'style': ''} }) }} En cochant cette case, j'accepte que mon e-mail soit exploité pour la réception de la newsletter DigiTeam (voir la <a href="{{ path('mentionsLegales') }}">politique de confidentialité</a>)</label>
@@ -385,7 +351,7 @@
 
                                 {{ form_end(form) }}
 
-                            </div>
+
                             
                         </div>
                     </div>

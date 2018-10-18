@@ -29,12 +29,12 @@
 					<th>{{ article.titre }}</th>
 					<th>{{ article.resume }}</th>
 					<th>{{ article.dateAjout | date("d/m/Y") }}</th>
-					<th>
+					<th class="btn-admin-table">
 						<a role="button" class="btn btn-warning" href='/admin/article/edit/{{ article.id }}'>
 							<span class="glyphicon glyphicon-edit"></span>
 						</a>
 					</th>
-					<th>
+					<th class="btn-admin-table">
 
 						<button class="btn btn-danger" data-toggle="modal" href="#delete{{ article.id }}">
 							<span class="glyphicon glyphicon-trash"></span>

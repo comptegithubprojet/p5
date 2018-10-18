@@ -141,12 +141,4 @@ class DefaultController extends AbstractController
 	public function mentionsLegales(){
 		return $this->render('mentionsLegales.html.twig');
 	}
-
-	/**
-	 * @Route("/mail", name="mail")
-	 */
-	public function mail(){
-		return $this->render('/emails/sendDevis.html.twig');
-	}
-
 }

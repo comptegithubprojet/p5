@@ -76,4 +76,49 @@
 
 {% include 'layout/footer.html.twig' %}
 </body>
+
 {% include 'layout/javascripts.html.twig' %}
+<script type="text/javascript">
+$(document).ready(function()
+{
+    var hash = window.location.hash.substr(1);
+    console.log(hash);
+
+    if(hash == 'starter') 
+    {
+        $('#devis_caseStarterPack').prop('checked', true);
+    }
+
+    if(hash == 'challenger') 
+    {
+        $('#devis_caseChallengerPack').prop('checked', true);
+    }
+
+    if(hash == 'expert') 
+    {
+        $('#devis_caseExpertPack').prop('checked', true);
+    }
+
+    if(hash == 'inboundmarketing') 
+    {
+        $('#devis_caseInboundMarketing').prop('checked', true);
+    }
+
+    if(hash == 'design') 
+    {
+        $('#devis_caseDesign').prop('checked', true);
+    }
+
+    if(hash == 'consulting') 
+    {
+        $('#devis_caseConsulting').prop('checked', true);
+    }   
+
+    $("h1:contains('Oops! An Error Occurred')").remove();
+    $("h2:contains('The server returned a \"500 Internal Server Error\".')").remove();
+    
+
+}
+);
+    
+</script>

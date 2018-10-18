@@ -294,6 +294,15 @@
     	$('#btnOption5hide').hide();
 	});
 
+	$(document).ready(function()
+	{
+		$("h1:contains('Oops! An Error Occurred')").remove();
+    	$("h2:contains('The server returned a \"500 Internal Server Error\".')").remove();
+    	$( "div:last" ).remove();
+	});
+
+	
+
 	</script>
 
 
